@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iot_anomaly_emulator/home/providers/counter_provider.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
-
-final StateProvider<int> counterProvider = StateProvider((ref) => 0);
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -28,12 +27,12 @@ class CounterView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => ref.read(counterProvider.notifier).state++,
+            onPressed: () => ref.read(counterProvider.notifier).increment(),
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
-            onPressed: () => ref.read(counterProvider.notifier).state--,
+            onPressed: () => ref.read(counterProvider.notifier).decrement(),
             child: const Icon(Icons.remove),
           ),
         ],
