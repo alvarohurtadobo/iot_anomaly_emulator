@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iot_anomaly_emulator/counter/counter.dart';
+import 'package:iot_anomaly_emulator/home/counter.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class App extends StatelessWidget {
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const HomePage(),
     );
   }
 }

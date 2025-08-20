@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+final StateProvider<int> counterProvider = StateProvider((ref) => 0);
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,27 +13,28 @@ class CounterPage extends StatelessWidget {
   }
 }
 
-class CounterView extends StatelessWidget {
+class CounterView extends ConsumerWidget {
   const CounterView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final counter = ref.watch(counterProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(title: Text('Current: $counter')),
       body: const Center(child: CounterText()),
-      floatingActionButton: const Column(
+      floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: null,
-            child: Icon(Icons.add),
+            onPressed: () => ref.read(counterProvider.notifier).state++,
+            child: const Icon(Icons.add),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           FloatingActionButton(
-            onPressed: null,
-            child: Icon(Icons.remove),
+            onPressed: () => ref.read(counterProvider.notifier).state--,
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

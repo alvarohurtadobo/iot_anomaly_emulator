@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iot_anomaly_emulator/app/app.dart';
-import 'package:iot_anomaly_emulator/counter/counter.dart';
+import 'package:iot_anomaly_emulator/home/counter.dart';
 
 void main() {
   group('App', () {
