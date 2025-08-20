@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
 class MQTTConttoller {
+  MqttServerClient client;
   init() async {
     final myClient =
         MqttServerClient.withPort(
@@ -26,5 +30,22 @@ class MQTTConttoller {
       print('Error: $e');
       myClient.disconnect();
     }
+  }
+
+  sendMessage(){
+    const pubTopic = 'flutter/sensors';
+  final payload = {
+    "device": "Samsung A35",
+    "temperature": 26.4,
+    "humidity": 51.2,
+    "timestamp": DateTime.now().toIso8601String(),
+  };
+  final builder = MqttClientPayloadBuilder();
+  builder.addString(jsonEncode(payload));
+
+  myClient.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
+
+  await Future.delayed(Duration(seconds: 5));
+  myClient.disconnect();
   }
 }
