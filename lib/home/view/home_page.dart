@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iot_anomaly_emulator/common/view/drawer.dart';
 import 'package:iot_anomaly_emulator/home/providers/counter_provider.dart';
 // import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
@@ -20,7 +21,8 @@ class CounterView extends ConsumerWidget {
     // final l10n = context.l10n;
     final counter = ref.watch(counterProvider);
     return Scaffold(
-      appBar: AppBar(title: Text('Current: $counter')),
+      appBar: AppBar(title: const Text('IoT Emulator')),
+      drawer: myDrawer(),
       body: const Center(child: CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
