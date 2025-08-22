@@ -12,7 +12,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/device/:id',
       builder: (context, state) {
-        final id = (state.pathParameters['id'] ?? 0) as int;
+        final id = int.tryParse(state.pathParameters['id'].toString()) ?? 0;
         return DevicePage(
           deviceId: id,
         );

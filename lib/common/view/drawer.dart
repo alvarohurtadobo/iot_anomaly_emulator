@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 Drawer myDrawer(BuildContext context) {
+  final l10n = context.l10n;
   final location = GoRouterState.of(context).uri.toString();
   print("Rebuild with location $location");
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
-      children: const <Widget>[
-        DrawerHeader(
+      children: <Widget>[
+        const DrawerHeader(
           decoration: BoxDecoration(
             color: Colors.blue,
           ),
@@ -21,16 +23,33 @@ Drawer myDrawer(BuildContext context) {
           ),
         ),
         ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Home'),
+          leading: const Icon(Icons.home),
+          title: Text(l10n.home),
+          onTap: () {
+            context..go('/')
+            ..pop();
+          },
         ),
         ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('Settings'),
+          leading: const Icon(Icons.home),
+          title: const Text('Devices'),
+          onTap: () => context.go('/device/1'),
         ),
         ListTile(
-          leading: Icon(Icons.logout),
-          title: Text('Logout'),
+          leading: const Icon(Icons.settings),
+          title: Text(l10n.settings),
+          onTap: () {
+            context..go('/settings')
+            ..pop();
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.logout),
+          title: const Text('Logout'),
+          onTap: () {
+            context..go('/')
+            ..pop();
+          },
         ),
       ],
     ),
