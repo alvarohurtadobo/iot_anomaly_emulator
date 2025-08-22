@@ -1,5 +1,3 @@
-
-
 import 'package:go_router/go_router.dart';
 import 'package:iot_anomaly_emulator/devices/view/devices_page.dart';
 import 'package:iot_anomaly_emulator/home/view/home_page.dart';
@@ -14,8 +12,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/device/:id',
       builder: (context, state) {
-        final id = state.params['id'] as int;
-        return DevicePage(deviceId: id,);
+        final id = (state.pathParameters['id'] ?? 0) as int;
+        return DevicePage(
+          deviceId: id,
+        );
       },
     ),
     GoRoute(
