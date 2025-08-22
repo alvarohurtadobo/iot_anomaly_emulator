@@ -1,6 +1,9 @@
 {
     "@@locale": "es",
     "counterAppBarTitle": "Contador",
+    "home": "Inicio",
+    "devices": "Dispositivos",
+    "settings": "Configuración",
     "@counterAppBarTitle": {
         "description": "Texto mostrado en la AppBar de la página del contador"
     }

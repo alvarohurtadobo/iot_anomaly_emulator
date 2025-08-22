@@ -5,7 +5,7 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 
 class MQTTConttoller {
   late MqttServerClient myClient;
-  init() async {
+  Future<void> init() async {
     myClient =
         MqttServerClient.withPort(
             'broker.emqx.io',
