@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-Drawer myDrawer() {
+Drawer myDrawer(BuildContext context) {
+  final location = GoRouterState.of(context).uri.toString();
+  print("Rebuild with location $location");
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -10,7 +13,7 @@ Drawer myDrawer() {
             color: Colors.blue,
           ),
           child: Text(
-            'Menu',
+            'IoT Monitor',
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,

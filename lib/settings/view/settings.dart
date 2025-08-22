@@ -18,9 +18,8 @@ class CounterView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final l10n = context.l10n;
-    final counter = ref.watch(counterProvider);
     return Scaffold(
-      appBar: AppBar(title: Text('Current: $counter')),
+      appBar: AppBar(title: const Text('Current')),
       body: const Center(child: CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,

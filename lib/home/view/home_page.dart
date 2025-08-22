@@ -19,10 +19,9 @@ class CounterView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final l10n = context.l10n;
-    final counter = ref.watch(counterProvider);
     return Scaffold(
       appBar: AppBar(title: const Text('IoT Emulator')),
-      drawer: myDrawer(),
+      drawer: myDrawer(context),
       body: const Center(child: CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
