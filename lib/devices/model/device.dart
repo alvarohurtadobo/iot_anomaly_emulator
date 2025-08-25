@@ -1,3 +1,5 @@
+import 'package:iot_anomaly_emulator/devices/model/types.dart';
+
 class EmulatedDevice {
   const EmulatedDevice({
     required this.id,
@@ -9,15 +11,15 @@ class EmulatedDevice {
     return EmulatedDevice(
       id: (json['id'] as int?) ?? 0,
       name: json['name'].toString(),
-      type: json['type'].toString(),
+      type: json['type'] as DeviceTypes,
     );
   }
 
   final int id;
   final String name;
-  final String type;
+  final DeviceTypes type;
 
-  EmulatedDevice copyWith({int? id, String? name, String? type}) {
+  EmulatedDevice copyWith({int? id, String? name, DeviceTypes? type}) {
     return EmulatedDevice(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -29,3 +31,9 @@ class EmulatedDevice {
     return {'id': id, 'name': name, 'type': type};
   }
 }
+
+List<EmulatedDevice> emulatedDevices = [
+  const EmulatedDevice(id: 1, name: 'DeMag400', type: DeviceTypes.imm),
+  const EmulatedDevice(id: 2, name: 'Arc Solder', type: DeviceTypes.arc),
+  const EmulatedDevice(id: 3, name: 'DeMag100', type: DeviceTypes.imm),
+];
