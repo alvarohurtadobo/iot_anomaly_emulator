@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:iot_anomaly_emulator/devices/view/devices_page.dart';
+import 'package:iot_anomaly_emulator/devices/view/device_page.dart';
 import 'package:iot_anomaly_emulator/home/view/home_page.dart';
 import 'package:iot_anomaly_emulator/settings/view/settings.dart';
 

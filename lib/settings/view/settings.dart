@@ -21,21 +21,6 @@ class CounterView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settings)),
       body: const Center(child: CounterText()),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () => ref.read(counterProvider.notifier).increment(),
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            onPressed: () => ref.read(counterProvider.notifier).decrement(),
-            child: const Icon(Icons.remove),
-          ),
-        ],
-      ),
     );
   }
 }

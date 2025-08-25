@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/view/drawer.dart';
 import 'package:iot_anomaly_emulator/devices/model/device.dart';
-import 'package:iot_anomaly_emulator/devices/view/widgets/deviceButton.dart';
+import 'package:iot_anomaly_emulator/devices/view/widgets/device_button.dart';
 import 'package:iot_anomaly_emulator/home/providers/counter_provider.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
@@ -33,11 +33,6 @@ class CounterView extends ConsumerWidget {
             onPressed: () => ref.read(counterProvider.notifier).increment(),
             child: const Icon(Icons.add),
           ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            onPressed: () => ref.read(counterProvider.notifier).decrement(),
-            child: const Icon(Icons.remove),
-          ),
         ],
       ),
     );
@@ -53,12 +48,15 @@ class DevicesWrappedList extends StatelessWidget {
 
     return Wrap(
       alignment: WrapAlignment.spaceBetween,
-      children: emulatedDevices.map(
-        (dev) => DeviceButton(
-          name: dev.name,
-          type: dev.type,
-        ),
-      ).toList(),
+      children: emulatedDevices
+          .map(
+            (dev) => DeviceButton(
+              id: dev.id,
+              name: dev.name,
+              type: dev.type,
+            ),
+          )
+          .toList(),
     );
   }
 }
