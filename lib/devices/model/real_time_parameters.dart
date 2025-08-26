@@ -14,15 +14,15 @@ class RealTimeParameters {
     required this.timestamp,
   });
 
-  final double vibration;
-  final double temperature;
-  final double pressure;
-  final double oilQuality;
-  final double contaminantLevel;
-  final double acidity;
-  final double hoursOperated;
-  final double maintenanceHistory;
-  final double load;
+  final double? vibration;
+  final double? temperature;
+  final double? pressure;
+  final double? oilQuality;
+  final double? contaminantLevel;
+  final double? acidity;
+  final double? hoursOperated;
+  final double? maintenanceHistory;
+  final double? load;
   final bool failure;
   final bool anomaly;
   final DateTime timestamp;
@@ -79,17 +79,17 @@ class RealTimeParameters {
   /// Para crear la clase desde JSON
   factory RealTimeParameters.fromJson(Map<String, dynamic> json) {
     return RealTimeParameters(
-      vibration: double.tryParse(json['vibration'].toString()) ?? 0.0,
-      temperature: double.tryParse(json['temperature'].toString()) ?? 0,
-      pressure: double.tryParse(json['pressure'].toString()) ?? 0,
-      oilQuality: double.tryParse(json['oil_quality'].toString()) ?? 0,
+      vibration: double.tryParse(json['vibration'].toString()),
+      temperature: double.tryParse(json['temperature'].toString()),
+      pressure: double.tryParse(json['pressure'].toString()),
+      oilQuality: double.tryParse(json['oil_quality'].toString()),
       contaminantLevel:
-          double.tryParse(json['contaminant_level'].toString()) ?? 0,
+          double.tryParse(json['contaminant_level'].toString()),
       acidity: double.tryParse(json['acidity'].toString()) ?? 0,
-      hoursOperated: double.tryParse(json['hours_operated'].toString()) ?? 0,
+      hoursOperated: double.tryParse(json['hours_operated'].toString()),
       maintenanceHistory:
-          double.tryParse(json['maintenance_history'].toString()) ?? 0,
-      load: double.tryParse(json['load'].toString()) ?? 0,
+          double.tryParse(json['maintenance_history'].toString()),
+      load: double.tryParse(json['load'].toString()),
       failure: (json['failure'] as bool?) ?? false,
       anomaly: (json['anomaly'] as bool?) ?? false,
       timestamp:

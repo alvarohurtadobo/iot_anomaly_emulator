@@ -29,7 +29,7 @@ class DeviceButton extends ConsumerWidget {
         width: Sizes.buttonSize,
         margin: const EdgeInsets.all(Sizes.p8),
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: Colors.grey,
           borderRadius: const BorderRadius.all(
             Radius.circular(Sizes.buttonSize / 10),
           ),
