@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/view/drawer.dart';
-import 'package:iot_anomaly_emulator/home/providers/counter_provider.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class DevicePage extends ConsumerWidget {
@@ -15,7 +14,6 @@ class DevicePage extends ConsumerWidget {
       appBar: AppBar(title: Text('${l10n.devices} $deviceId')),
       drawer: myDrawer(context),
       body: Center(child: Text('Device $deviceId')),
-      
     );
   }
 }
