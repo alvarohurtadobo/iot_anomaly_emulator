@@ -1,17 +1,4 @@
 class RealTimeParameters {
-  final double vibration;
-  final double temperature;
-  final double pressure;
-  final double oilQuality;
-  final double contaminantLevel;
-  final double acidity;
-  final double hoursOperated;
-  final double maintenanceHistory;
-  final double load;
-  final bool failure;
-  final bool anomaly;
-  final DateTime timestamp;
-
   const RealTimeParameters({
     required this.vibration,
     required this.temperature,
@@ -26,6 +13,19 @@ class RealTimeParameters {
     required this.anomaly,
     required this.timestamp,
   });
+
+  final double vibration;
+  final double temperature;
+  final double pressure;
+  final double oilQuality;
+  final double contaminantLevel;
+  final double acidity;
+  final double hoursOperated;
+  final double maintenanceHistory;
+  final double load;
+  final bool failure;
+  final bool anomaly;
+  final DateTime timestamp;
 
   /// Crea una copia modificada del objeto (útil para Riverpod/StateNotifier)
   RealTimeParameters copyWith({

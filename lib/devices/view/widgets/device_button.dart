@@ -35,7 +35,9 @@ class DeviceButton extends ConsumerWidget {
           ),
           image: DecorationImage(
             image: AssetImage(
-              type == DeviceTypes.imm
+              type == DeviceTypes.other
+                  ? 'assets/images/other.jpg'
+                  : type == DeviceTypes.imm
                   ? 'assets/images/imm.jpg'
                   : 'assets/images/arc.jpg',
             ),
