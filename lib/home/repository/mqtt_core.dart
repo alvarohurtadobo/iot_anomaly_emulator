@@ -15,13 +15,13 @@ class MQTTConttoller {
           ..keepAlivePeriod = 60
           ..logging(on: true)
           ..onConnected = () {
-            print("Successfully connected");
+            print('Successfully connected');
           }
           ..onDisconnected = () {
-            print("Successfully disconnected");
+            print('Successfully disconnected');
           }
           ..onSubscribed = (topic) {
-            print("Successfully subscribed to $topic");
+            print('Successfully subscribed to $topic');
           };
 
     try {
@@ -35,10 +35,10 @@ class MQTTConttoller {
   sendMessage() {
     const pubTopic = 'flutter/sensors';
     final payload = {
-      "device": "Samsung A35",
-      "temperature": 26.4,
-      "humidity": 51.2,
-      "timestamp": DateTime.now().toIso8601String(),
+      'device': 'Samsung A35',
+      'temperature': 26.4,
+      'humidity': 51.2,
+      'timestamp': DateTime.now().toIso8601String(),
     };
     final builder = MqttClientPayloadBuilder();
     builder.addString(jsonEncode(payload));

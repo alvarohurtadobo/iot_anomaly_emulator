@@ -3,7 +3,6 @@ import 'package:iot_anomaly_emulator/common/routes.dart';
 import 'package:iot_anomaly_emulator/home/repository/mqtt_core.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
-
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -20,7 +19,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      
+
       routerConfig: router,
     );
   }
