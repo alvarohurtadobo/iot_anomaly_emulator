@@ -20,7 +20,7 @@ class ProcessTypeWithId {
 List<ProcessTypeWithId> processTypeWithId = [
   ProcessTypeWithId(
     id: 1,
-    displayName: map[ProcessType.hoursOperated] ?? '',
+    displayName: map[ProcessType.vibrations] ?? '',
   ),
   ProcessTypeWithId(
     id: 2,
@@ -28,6 +28,6 @@ List<ProcessTypeWithId> processTypeWithId = [
   ),
   ProcessTypeWithId(
     id: 3,
-    displayName: map[ProcessType.vibrations] ?? '',
+    displayName: map[ProcessType.hoursOperated] ?? '',
   ),
 ];
