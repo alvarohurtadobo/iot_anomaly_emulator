@@ -17,11 +17,31 @@ class HistoryChart extends ConsumerWidget {
         LineChartData(
           lineBarsData: [
             LineChartBarData(
+              color: Colors.red,
               spots: [
                 for (int i = 0; i < history.length; i++)
                   FlSpot(
                     i.toDouble(),
                     history[i].values['temperature']?.toDouble() ?? 0,
+                  ),
+              ],
+            ),
+            LineChartBarData(
+              color: Colors.yellow,
+              spots: [
+                for (int i = 0; i < history.length; i++)
+                  FlSpot(
+                    i.toDouble(),
+                    history[i].values['vibration']?.toDouble() ?? 0,
+                  ),
+              ],
+            ),
+            LineChartBarData(
+              spots: [
+                for (int i = 0; i < history.length; i++)
+                  FlSpot(
+                    i.toDouble(),
+                    history[i].values['pressure']?.toDouble() ?? 0,
                   ),
               ],
             ),

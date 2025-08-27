@@ -43,73 +43,79 @@ double uniformRandom({double min = 0, double max = 100}) {
   return min + _random.nextDouble() * (max - min);
 }
 
-StreamProviderFamily<SensorData, Duration> sensorStreamProvider =
-    StreamProvider.family<SensorData, Duration>((ref, interval) {
-      final processType = ref.watch(currentProcessTypeProvider);
-      final currentTimestamp = DateTime.now();
-      final initialEmulationDatetime =
-          ref.watch(currentStartDatetimeProvider) ?? DateTime(2025, 1, 1);
+StreamProviderFamily<SensorData, Duration>
+sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
+  ref,
+  interval,
+) {
+  final processType = ref.watch(currentProcessTypeProvider);
 
-      return Stream.periodic(interval, (_) {
-        if (processType == null) {
-          return SensorData(values: {}, timestamp: currentTimestamp);
-        }
+  final initialEmulationDatetime =
+      ref.watch(currentStartDatetimeProvider) ?? DateTime(2025, 1, 1);
 
-        int elapsedTimeSinceStartEmulation = currentTimestamp
-            .difference(initialEmulationDatetime)
-            .inSeconds;
+  return Stream.periodic(interval, (_) {
+    final currentTimestamp = DateTime.now();
+    if (processType == null) {
+      return SensorData(values: {}, timestamp: currentTimestamp);
+    }
+    final elapsedTimeSinceStartEmulation = currentTimestamp
+        .difference(initialEmulationDatetime)
+        .inSeconds;
+    print(
+      "Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation",
+    );
 
-        switch (processType) {
-          case 1: // Vibrations
-            final vibration = sin(elapsedTimeSinceStartEmulation / 5);
+    switch (processType) {
+      case 1: // Vibrations
+        final vibration =
+            sin(elapsedTimeSinceStartEmulation / 5) +
             normalRandom(mean: 0.0, stdDev: 0.5);
-            return SensorData(
-              values: {
-                'vibration': vibration,
-                'temperature':
-                    20 + 2 * vibration + normalRandom(mean: 0, stdDev: 0.5),
-                'pressure':
-                    30 +
-                    3 * vibration * vibration +
-                    normalRandom(mean: 0, stdDev: 1),
-              },
-              timestamp: currentTimestamp,
-            );
+        return SensorData(
+          values: {
+            'vibration': vibration,
+            'temperature':
+                20 + 2 * vibration + normalRandom(mean: 0, stdDev: 0.5),
+            'pressure':
+                30 +
+                3 * vibration * vibration +
+                normalRandom(mean: 0, stdDev: 1),
+          },
+          timestamp: currentTimestamp,
+        );
 
-          case 2: // Oil Analysis
-            final oilQuality =
-                uniformRandom(min: 0, max: 100) +
-                elapsedTimeSinceStartEmulation * 0.1;
-            return SensorData(
-              values: {
-                'oil_quality': oilQuality,
-                'contaminant_level':
-                    50 + 0.5 * oilQuality + normalRandom(mean: 0, stdDev: 5),
-                'acidity':
-                    10 +
-                    0.3 * sqrt(oilQuality * oilQuality * oilQuality) +
-                    normalRandom(mean: 0, stdDev: 2),
-              },
-              timestamp: currentTimestamp,
-            );
+      case 2: // Oil Analysis
+        final oilQuality =
+            uniformRandom(min: 0, max: 100) +
+            elapsedTimeSinceStartEmulation * 0.1;
+        return SensorData(
+          values: {
+            'oil_quality': oilQuality,
+            'contaminant_level':
+                50 + 0.5 * oilQuality + normalRandom(mean: 0, stdDev: 5),
+            'acidity':
+                10 +
+                0.3 * sqrt(oilQuality * oilQuality * oilQuality) +
+                normalRandom(mean: 0, stdDev: 2),
+          },
+          timestamp: currentTimestamp,
+        );
 
-          case 3: // HoursOperated
-            final hoursOperated =
-                exponentialRandom(scale: 50) +
-                elapsedTimeSinceStartEmulation * 0.5;
-            return SensorData(
-              values: {
-                'hours_operated': hoursOperated,
-                'maintenance_history': poissonRandom(lambda: 2) * 1.0,
-                'load':
-                    100 +
-                    0.1 * elapsedTimeSinceStartEmulation +
-                    normalRandom(mean: 0, stdDev: 10),
-              },
-              timestamp: currentTimestamp,
-            );
-          default:
-            return SensorData(values: {}, timestamp: currentTimestamp);
-        }
-      });
-    });
+      case 3: // HoursOperated
+        final hoursOperated =
+            exponentialRandom(scale: 50) + elapsedTimeSinceStartEmulation * 0.5;
+        return SensorData(
+          values: {
+            'hours_operated': hoursOperated,
+            'maintenance_history': poissonRandom(lambda: 2) * 1.0,
+            'load':
+                100 +
+                0.1 * elapsedTimeSinceStartEmulation +
+                normalRandom(mean: 0, stdDev: 10),
+          },
+          timestamp: currentTimestamp,
+        );
+      default:
+        return SensorData(values: {}, timestamp: currentTimestamp);
+    }
+  });
+});

@@ -33,7 +33,7 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
       } else {
         state = updated;
       }
-      print("Historic data len: ${updated.length}");
+      print('Historic data len: ${updated.length}');
     });
 
     ref.onDispose(() => _sub?.cancel());

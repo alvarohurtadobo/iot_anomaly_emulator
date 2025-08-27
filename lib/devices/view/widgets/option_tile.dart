@@ -33,7 +33,7 @@ class OptionTile extends ConsumerWidget {
                 .toList(),
             value: ref.watch(currentProcessTypeProvider),
             onChanged: (value) {
-              ref.read(currentProcessTypeProvider.notifier).setValue(value);
+              ref.read(currentProcessTypeProvider.notifier).value = value;
               ref.read(currentStartDatetimeProvider.notifier).setToNow();
             },
           ),
