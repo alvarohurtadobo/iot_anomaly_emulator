@@ -10,7 +10,7 @@ final sensorHistoryProvider =
     );
 
 class SensorHistoryNotifier extends Notifier<List<SensorData>> {
-  static const int maxLength = 64;
+  static const int maxLength = 32;
   StreamSubscription<SensorData>? _sub;
 
   @override
@@ -29,7 +29,7 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
       // Append new data and delete outside of 64 elements window
       final updated = [...state, data];
       if (updated.length >= maxLength) {
-        state = updated.sublist(updated.length - maxLength);
+        state = updated.sublist(updated.length - (maxLength - 1));
       } else {
         state = updated;
       }

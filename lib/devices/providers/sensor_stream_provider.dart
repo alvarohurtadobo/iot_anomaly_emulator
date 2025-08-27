@@ -1,9 +1,10 @@
 import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
+import 'package:iot_anomaly_emulator/devices/providers/start_datetime_provider.dart';
 
 class SensorData {
-  SensorData(this.values) : timestamp = DateTime.now();
+  SensorData({required this.values, required this.timestamp});
 
   final Map<String, double> values;
   final DateTime timestamp;
@@ -41,33 +42,53 @@ int poissonRandom({double lambda = 2}) {
 StreamProviderFamily<SensorData, Duration> sensorStreamProvider =
     StreamProvider.family<SensorData, Duration>((ref, interval) {
       final processType = ref.watch(currentProcessTypeProvider);
+      final currentTimestamp = DateTime.now();
+      final initialEmulationDatetime =
+          ref.watch(currentStartDatetimeProvider) ?? DateTime(2025, 1, 1);
 
       return Stream.periodic(interval, (_) {
-        if (processType == null) return SensorData({});
+        if (processType == null) {
+          return SensorData(values: {}, timestamp: currentTimestamp);
+        }
+
+        int elapsedTimeSinceStartEmulation = currentTimestamp
+            .difference(initialEmulationDatetime)
+            .inSeconds;
 
         switch (processType) {
           case 1:
-            return SensorData({
-              'vibration': normalRandom(mean: 10, stdDev: 2),
-              'temperature': normalRandom(mean: 25, stdDev: 1),
-              'pressure': exponentialRandom(scale: 30),
-            });
+            return SensorData(
+              values: {
+                'vibration':
+                    sin(elapsedTimeSinceStartEmulation / 5) +
+                    normalRandom(mean: 0.0, stdDev: 0.5),
+                'temperature': normalRandom(mean: 25, stdDev: 1),
+                'pressure': exponentialRandom(scale: 30),
+              },
+              timestamp: currentTimestamp,
+            );
 
           case 2:
-            return SensorData({
-              'oil_quality': normalRandom(mean: 80, stdDev: 5),
-              'contaminant_level': poissonRandom(lambda: 3) * 1.0,
-              'acidity': normalRandom(mean: 7, stdDev: 0.3),
-            });
+            return SensorData(
+              values: {
+                'oil_quality': normalRandom(mean: 80, stdDev: 5),
+                'contaminant_level': poissonRandom(lambda: 3) * 1.0,
+                'acidity': normalRandom(mean: 7, stdDev: 0.3),
+              },
+              timestamp: currentTimestamp,
+            );
 
           case 3:
-            return SensorData({
-              'hours_operated': exponentialRandom(scale: 100),
-              'maintenance_history': poissonRandom(lambda: 1.5) * 1.0,
-              'load': normalRandom(mean: 50, stdDev: 10),
-            });
+            return SensorData(
+              values: {
+                'hours_operated': exponentialRandom(scale: 100),
+                'maintenance_history': poissonRandom(lambda: 1.5) * 1.0,
+                'load': normalRandom(mean: 50, stdDev: 10),
+              },
+              timestamp: currentTimestamp,
+            );
           default:
-            return SensorData({});
+            return SensorData(values: {}, timestamp: currentTimestamp);
         }
       });
     });
