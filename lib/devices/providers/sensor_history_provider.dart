@@ -28,11 +28,12 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
     _sub = stream.listen((data) {
       // Append new data and delete outside of 64 elements window
       final updated = [...state, data];
-      if (updated.length > maxLength) {
+      if (updated.length >= maxLength) {
         state = updated.sublist(updated.length - maxLength);
       } else {
         state = updated;
       }
+      print("Historic data len: ${updated.length}");
     });
 
     ref.onDispose(() => _sub?.cancel());
