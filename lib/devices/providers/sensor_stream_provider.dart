@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iot_anomaly_emulator/devices/providers/currentProcessTypeProvider.dart';
+import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 
 class SensorData {
   SensorData(this.values) : timestamp = DateTime.now();

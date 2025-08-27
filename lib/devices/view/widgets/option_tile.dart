@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
-import 'package:iot_anomaly_emulator/devices/providers/currentProcessTypeProvider.dart';
+import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 
 class OptionTile extends ConsumerWidget {
   const OptionTile({
