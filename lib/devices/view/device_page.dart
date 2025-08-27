@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
 import 'package:iot_anomaly_emulator/common/view/drawer.dart';
 import 'package:iot_anomaly_emulator/devices/model/device.dart';
+import 'package:iot_anomaly_emulator/devices/model/parameters.dart';
 import 'package:iot_anomaly_emulator/devices/model/process_types.dart';
 import 'package:iot_anomaly_emulator/devices/providers/sensor_history_provider.dart';
 import 'package:iot_anomaly_emulator/devices/providers/sensor_stream_provider.dart';
@@ -10,18 +11,6 @@ import 'package:iot_anomaly_emulator/devices/view/widgets/history_chart.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/numeric_tile.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/option_tile.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
-
-List<String> parameters = [
-  'vibration',
-  'temperature',
-  'pressure',
-  'oil_quality',
-  'contaminant_level',
-  'acidity',
-  'hours_operated',
-  'maintenance_history',
-  'load',
-];
 
 class DevicePage extends ConsumerWidget {
   const DevicePage({required this.deviceId, super.key});
@@ -44,7 +33,7 @@ class DevicePage extends ConsumerWidget {
           gapH8,
           OptionTile(
             title: 'Process type',
-            optionsWithId: processTypeWithId,
+            optionsWithId: processTypesWithId,
           ),
           gapH8,
           const Text('Parameters:'),
@@ -53,14 +42,14 @@ class DevicePage extends ConsumerWidget {
             children: parameters
                 .map<Widget>(
                   (param) => NumericTile(
-                    title: param,
-                    value: sensorData.value?.values[param],
+                    title: param.displayName,
+                    value: sensorData.value?.values[param.name],
                   ),
                 )
                 .toList(),
           ),
           gapH8,
-          const HistoryChart()
+          const HistoryChart(),
         ],
       ),
     );
