@@ -1,9 +1,9 @@
-enum ProcessType { hoursOperated, oilAnalysis, vibrations }
+enum ProcessType { vibrations, oilAnalysis, hoursOperated }
 
 Map<ProcessType, String> map = {
-  ProcessType.hoursOperated: 'Hours Operated',
-  ProcessType.oilAnalysis: 'Oil Analysis',
   ProcessType.vibrations: 'Vibrations',
+  ProcessType.oilAnalysis: 'Oil Analysis',
+  ProcessType.hoursOperated: 'Hours Operated',
 };
 
 String processTypeToString(ProcessType type) {

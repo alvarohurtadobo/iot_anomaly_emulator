@@ -4,9 +4,9 @@ class CurrentProcessType extends Notifier<int?> {
   @override
   int? build() => null;
 
-  void setValue(int? value) {
-    state = value;
-  }
+  set value(int? newValue) => state = newValue;
+
+  int? get value => state;
 
   void clear() {
     state = null;
