@@ -53,6 +53,7 @@ class DevicesWrappedList extends StatelessWidget {
               id: dev.id,
               name: dev.name,
               type: dev.type,
+              processTypeId: dev.processType.id
             ),
           )
           .toList(),

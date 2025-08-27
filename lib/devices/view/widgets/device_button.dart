@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
 import 'package:iot_anomaly_emulator/devices/model/types.dart';
+import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class DeviceButton extends ConsumerWidget {
@@ -10,18 +11,21 @@ class DeviceButton extends ConsumerWidget {
     required this.id,
     required this.name,
     required this.type,
+    required this.processTypeId,
     super.key,
   });
 
   final int id;
   final String name;
   final DeviceTypes type;
+  final int processTypeId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     return GestureDetector(
       onTap: () {
+        ref.read(currentProcessTypeProvider.notifier).value = processTypeId;
         context.go('/device/$id');
       },
       child: Container(

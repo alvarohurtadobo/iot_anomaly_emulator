@@ -42,8 +42,6 @@ class DevicePage extends ConsumerWidget {
       body: Column(
         children: [
           gapH8,
-          Center(child: Text('Device ${device.id}')),
-          gapH8,
           OptionTile(
             title: 'Process type',
             optionsWithId: processTypeWithId,
@@ -62,7 +60,7 @@ class DevicePage extends ConsumerWidget {
                 .toList(),
           ),
           gapH8,
-          HistoryChart()
+          const HistoryChart()
         ],
       ),
     );

@@ -43,22 +43,22 @@ class EmulatedDevice {
 }
 
 List<EmulatedDevice> emulatedDevices = [
-  const EmulatedDevice(
+   EmulatedDevice(
     id: 1,
     name: 'DeMag400',
     type: DeviceTypes.imm,
-    processType: ProcessType.hoursOperated,
+    processType: timeProcess,
   ),
-  const EmulatedDevice(
+   EmulatedDevice(
     id: 2,
     name: 'Arc Solder',
     type: DeviceTypes.arc,
-    processType: ProcessType.oilAnalysis,
+    processType: oilProcess,
   ),
-  const EmulatedDevice(
+   EmulatedDevice(
     id: 3,
     name: 'DeMag100',
     type: DeviceTypes.other,
-    processType: ProcessType.vibrations,
+    processType: vibrationProcess,
   ),
 ];

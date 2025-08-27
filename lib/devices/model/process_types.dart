@@ -1,33 +1,35 @@
-enum ProcessType { vibrations, oilAnalysis, hoursOperated }
-
-Map<ProcessType, String> map = {
-  ProcessType.vibrations: 'Vibrations',
-  ProcessType.oilAnalysis: 'Oil Analysis',
-  ProcessType.hoursOperated: 'Hours Operated',
-};
-
-String processTypeToString(ProcessType type) {
-  return map[type] ?? '';
-}
-
-class ProcessTypeWithId {
-  ProcessTypeWithId({required this.id, required this.displayName});
+class ProcessType {
+  ProcessType({
+    required this.id,
+    required this.name,
+    required this.displayName,
+  });
 
   int id;
+  String name;
   String displayName;
 }
 
-List<ProcessTypeWithId> processTypeWithId = [
-  ProcessTypeWithId(
-    id: 1,
-    displayName: map[ProcessType.vibrations] ?? '',
-  ),
-  ProcessTypeWithId(
-    id: 2,
-    displayName: map[ProcessType.oilAnalysis] ?? '',
-  ),
-  ProcessTypeWithId(
-    id: 3,
-    displayName: map[ProcessType.hoursOperated] ?? '',
-  ),
+ProcessType vibrationProcess = ProcessType(
+  id: 1,
+  name: 'vibrations',
+  displayName: 'Vibrations',
+);
+
+ProcessType oilProcess = ProcessType(
+  id: 2,
+  name: 'oil_analysis',
+  displayName: 'Oil Analysis',
+);
+
+ProcessType timeProcess = ProcessType(
+  id: 3,
+  name: 'hours_operated',
+  displayName: 'Hours Operated',
+);
+
+List<ProcessType> processTypeWithId = [
+  vibrationProcess,
+  oilProcess,
+  timeProcess,
 ];
