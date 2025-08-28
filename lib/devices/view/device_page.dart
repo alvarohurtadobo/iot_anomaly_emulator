@@ -26,17 +26,17 @@ class DevicePage extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Device $deviceId')),
-      // drawer: myDrawer(context),
+      appBar: AppBar(title: Text('${l10n.device} $deviceId')),
+      drawer: myDrawer(context),
       body: Column(
         children: [
           gapH8,
           OptionTile(
-            title: 'Process type',
+            title: l10n.process_type,
             optionsWithId: processTypesWithId,
           ),
           gapH8,
-          const Text('Parameters:'),
+          Text('${l10n.parameter}s:'),
           gapH8,
           Column(
             children: parameters

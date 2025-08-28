@@ -4,7 +4,12 @@
   "@counterAppBarTitle": {
     "description": "Text shown in the AppBar of the Counter Page"
   },
+  "device": "Device",
   "devices": "Devices",
   "home": "Home",
+  "parameter": "Parameter",
+  "process": "Process",
+  "process_type": "Process Type",
+  "setting": "Setting",
   "settings": "Settings"
 }

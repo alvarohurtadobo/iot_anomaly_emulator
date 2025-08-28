@@ -1,10 +1,15 @@
 {
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "home": "Inicio",
-    "devices": "Dispositivos",
-    "settings": "Configuración",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+  "@@locale": "es",
+  "counterAppBarTitle": "Contador",
+  "@counterAppBarTitle": {
+    "description": "Texto mostrado en la AppBar de la página del contador"
+  },
+  "device": "Dispositivo",
+  "devices": "Dispositivos",
+  "home": "Inicio",
+  "process": "Proceso",
+  "parameter": "Parámetro",
+  "process_type": "Tipo de proceso",
+  "setting": "Configuración",
+  "settings": "Configuraciones"
 }
