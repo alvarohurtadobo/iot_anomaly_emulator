@@ -13,8 +13,6 @@ class Responsive extends ConsumerWidget {
   final Widget? tablet;
   final Widget? mobile;
 
-  
-
   static bool isDesktop(BuildContext context) =>
       MediaQuery.sizeOf(context).width >= 1024;
 
