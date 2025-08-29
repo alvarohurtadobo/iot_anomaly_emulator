@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -16,10 +15,8 @@ class CounterView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.settings)),
-      body: const Center(child: CounterText()),
+    return const Scaffold(
+      body: Center(child: CounterText()),
     );
   }
 }

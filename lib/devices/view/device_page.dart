@@ -26,7 +26,6 @@ class DevicePage extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('${l10n.device} $deviceId')),
       body: Column(
         children: [
           gapH8,

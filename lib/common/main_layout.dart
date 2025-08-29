@@ -24,18 +24,18 @@ class MainLayout extends StatelessWidget {
                   icon: const Icon(Icons.home),
                   label: Text(l10n.home),
                 ),
-                const NavigationRailDestination(
-                  icon: Icon(Icons.hardware),
-                  label: Text('Devices'),
+                NavigationRailDestination(
+                  icon: const Icon(Icons.hardware),
+                  label: Text(l10n.devices),
                 ),
                 NavigationRailDestination(
                   icon: const Icon(Icons.settings),
                   label: Text(l10n.settings),
                 ),
-                const NavigationRailDestination(
-                  icon: const Icon(Icons.logout),
-                  label: Text('Logout'),
-                ),
+                // const NavigationRailDestination(
+                //   icon: Icon(Icons.logout),
+                //   label: Text('Logout'),
+                // ),
               ],
               selectedIndex: _getSelectedIndex(context),
               onDestinationSelected: (index) {
@@ -57,7 +57,7 @@ class MainLayout extends StatelessWidget {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('App')),
+      appBar: AppBar(title: Text(_getSelectedTitle(context))),
       drawer: myDrawer(context),
       body: child,
     );
@@ -65,7 +65,17 @@ class MainLayout extends StatelessWidget {
 
   int _getSelectedIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
-    if (location.startsWith('/settings')) return 1;
+    if (location.startsWith('/devices')) return 1;
+    if (location.startsWith('/settings')) return 2;
     return 0;
+  }
+
+  String _getSelectedTitle(BuildContext context) {
+    final l10n = context.l10n;
+    final location = GoRouterState.of(context).uri.toString();
+    if (location.startsWith('/devices')) return l10n.devices;
+    if (location.startsWith('/device')) return l10n.device;
+    if (location.startsWith('/settings')) return l10n.setting;
+    return l10n.home;
   }
 }

@@ -32,7 +32,7 @@ Drawer myDrawer(BuildContext context) {
         ),
         ListTile(
           leading: const Icon(Icons.hardware),
-          title: const Text('Devices'),
+          title:  Text(l10n.devices),
           onTap: () => context.go('/device/1'),
         ),
         ListTile(
@@ -43,14 +43,14 @@ Drawer myDrawer(BuildContext context) {
             ..pop();
           },
         ),
-        ListTile(
-          leading: const Icon(Icons.logout),
-          title: const Text('Logout'),
-          onTap: () {
-            context..go('/')
-            ..pop();
-          },
-        ),
+        // ListTile(
+        //   leading: const Icon(Icons.logout),
+        //   title: const Text('Logout'),
+        //   onTap: () {
+        //     context..go('/')
+        //     ..pop();
+        //   },
+        // ),
       ],
     ),
   );

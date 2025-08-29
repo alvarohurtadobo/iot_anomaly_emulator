@@ -20,7 +20,6 @@ class CounterView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.home)),
       body: const Center(child: DevicesWrappedList()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
