@@ -31,7 +31,7 @@ Drawer myDrawer(BuildContext context) {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.home),
+          leading: const Icon(Icons.hardware),
           title: const Text('Devices'),
           onTap: () => context.go('/device/1'),
         ),
