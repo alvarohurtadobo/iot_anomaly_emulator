@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iot_anomaly_emulator/devices/model/translate.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -15,19 +16,40 @@ class CounterView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
-      body: Center(child: CounterText()),
+    return Scaffold(
+      body: Center(
+        child: FutureBuilder<List<Translate>>(
+          future: getTranslations(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return const Text('Error loading');
+            } else if (snapshot.hasData &&
+                snapshot.data != null &&
+                snapshot.data!.isEmpty) {
+              return const Text('Empty data');
+            } else if (snapshot.hasData) {
+              final data = snapshot.data!;
+              return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(data[index].id.toString()),
+                      Text(data[index].source),
+                      Text(data[index].target!),
+                    ],
+                  );
+                },
+              );
+            }else{
+              return const Text('Unknown error');
+            }
+          },
+        ),
+      ),
     );
-  }
-}
-
-class CounterText extends StatelessWidget {
-  const CounterText({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Text('0', style: theme.textTheme.displayLarge);
   }
 }
