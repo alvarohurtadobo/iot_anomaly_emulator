@@ -7,8 +7,6 @@ import 'package:iot_anomaly_emulator/devices/model/device.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/device_button.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
-final random = Random(DateTime.now().millisecondsSinceEpoch);
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -55,6 +53,8 @@ class DevicesWrappedListState extends State<DevicesWrappedList> {
     super.initState();
 
     Future<void>.delayed(const Duration(seconds: 3), () async {
+      final random = Random(DateTime.now().millisecondsSinceEpoch);
+
       for (int i = 0; i < 100; i++) {
         await Future<void>.delayed(const Duration(seconds: 2));
         emulatedDevices = emulatedDevices

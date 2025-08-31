@@ -51,7 +51,7 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
   final processType = ref.watch(currentProcessTypeProvider);
 
   final initialEmulationDatetime =
-      ref.watch(currentStartDatetimeProvider) ?? DateTime(2025, 1, 1);
+      ref.watch(currentStartDatetimeProvider) ?? DateTime(2025);
 
   return Stream.periodic(interval, (_) {
     final currentTimestamp = DateTime.now();
