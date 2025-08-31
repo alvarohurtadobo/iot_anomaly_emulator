@@ -6,6 +6,7 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 class MQTTConttoller {
   late MqttServerClient myClient;
   Future<void> init() async {
+    // myClient = MqttServerClient()
     myClient =
         MqttServerClient.withPort(
             'broker.emqx.io',
@@ -32,7 +33,7 @@ class MQTTConttoller {
     }
   }
 
-  sendMessage() {
+  void sendMessage() {
     const pubTopic = 'flutter/sensors';
     final payload = {
       'device': 'Samsung A35',
@@ -48,7 +49,7 @@ class MQTTConttoller {
     // await Future.delayed(Duration(seconds: 5));
   }
 
-  dissconnect() {
+  void disconnect() {
     myClient.disconnect();
   }
 }

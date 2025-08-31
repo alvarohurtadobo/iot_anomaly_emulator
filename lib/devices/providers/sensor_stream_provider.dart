@@ -62,7 +62,7 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
         .difference(initialEmulationDatetime)
         .inSeconds;
     print(
-      "Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation",
+      'Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation',
     );
 
     switch (processType) {
