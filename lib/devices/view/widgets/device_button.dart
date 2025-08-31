@@ -12,6 +12,7 @@ class DeviceButton extends ConsumerWidget {
     required this.name,
     required this.type,
     required this.processTypeId,
+    required this.state,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class DeviceButton extends ConsumerWidget {
   final String name;
   final DeviceTypes type;
   final int processTypeId;
+  final bool state;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,6 +35,10 @@ class DeviceButton extends ConsumerWidget {
         width: Sizes.buttonSize,
         margin: const EdgeInsets.all(Sizes.p8),
         decoration: BoxDecoration(
+          border: Border.all(
+            color: state ? Colors.green : Colors.red,
+            width: 4,
+          ),
           color: Colors.grey,
           borderRadius: const BorderRadius.all(
             Radius.circular(Sizes.buttonSize / 10),
