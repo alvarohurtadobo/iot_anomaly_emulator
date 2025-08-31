@@ -5,13 +5,11 @@ import 'package:iot_anomaly_emulator/devices/model/device.dart';
 
 StreamProviderFamily<List<EmulatedDevice>, Duration> stateStreamProvider =
     StreamProvider.family<List<EmulatedDevice>, Duration>((ref, interval) {
-      final _random = Random(DateTime.now().millisecondsSinceEpoch);
+      final random = Random(DateTime.now().millisecondsSinceEpoch);
 
       return Stream.periodic(interval, (_) {
-        final newState = _random.nextBool();
-        emulatedDevices = emulatedDevices
-            .map((device) => device.copyWith(state: newState))
+        return emulatedDevices
+            .map((device) => device.copyWith(state: random.nextBool()))
             .toList();
-        return emulatedDevices;
       });
     });
