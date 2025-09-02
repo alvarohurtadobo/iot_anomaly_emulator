@@ -16,6 +16,12 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const HomePage(),
         ),
         GoRoute(
+          path: '/devices',
+          builder: (context, state) => const DevicePage(
+            deviceId: 0,
+          ),
+        ),
+        GoRoute(
           path: '/device/:id',
           builder: (context, state) {
             final id = int.tryParse(state.pathParameters['id'].toString()) ?? 0;
