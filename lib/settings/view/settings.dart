@@ -44,7 +44,7 @@ class CounterView extends ConsumerWidget {
                   );
                 },
               );
-            }else{
+            } else {
               return const Text('Unknown error');
             }
           },
