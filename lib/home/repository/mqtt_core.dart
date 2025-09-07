@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
@@ -16,21 +17,20 @@ class MQTTConttoller {
           ..keepAlivePeriod = 60
           ..logging(on: true)
           ..onConnected = () {
-            print('Successfully connected');
+            debugPrint('Successfully connected');
           }
           ..onDisconnected = () {
-            print('Successfully disconnected');
+            debugPrint('Successfully disconnected');
           }
           ..onSubscribed = (topic) {
-            print('Successfully subscribed to $topic');
+            debugPrint('Successfully subscribed to $topic');
           };
 
-    try {
-      await myClient.connect();
-    } catch (e) {
-      print('Error: $e');
+    await myClient.connect().catchError((e) {
+      debugPrint('Error: $e');
       myClient.disconnect();
-    }
+      return MqttClientConnectionStatus()..disconnectionOrigin;
+    });
   }
 
   void sendMessage() {
