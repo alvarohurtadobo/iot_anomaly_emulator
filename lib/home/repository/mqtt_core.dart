@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
-class MQTTConttoller {
+class MQTTController {
   late MqttServerClient myClient;
   Future<void> init() async {
     // myClient = MqttServerClient()
@@ -33,20 +33,26 @@ class MQTTConttoller {
     });
   }
 
-  void sendMessage() {
-    const pubTopic = 'flutter/sensors';
-    final payload = {
-      'device': 'Samsung A35',
-      'temperature': 26.4,
-      'humidity': 51.2,
-      'timestamp': DateTime.now().toIso8601String(),
-    };
-    final builder = MqttClientPayloadBuilder();
-    builder.addString(jsonEncode(payload));
+  // void sendMessage() {
+  //   const pubTopic = 'flutter/sensors';
+  //   final payload = {
+  //     'device': 'Samsung A35',
+  //     'temperature': 26.4,
+  //     'humidity': 51.2,
+  //     'timestamp': DateTime.now().toIso8601String(),
+  //   };
+  //   final builder = MqttClientPayloadBuilder();
+  //   builder.addString(jsonEncode(payload));
 
-    myClient.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
+  //   myClient.publishMessage(pubTopic, MqttQos.atLeastOnce, builder.payload!);
 
-    // await Future.delayed(Duration(seconds: 5));
+  //   // await Future.delayed(Duration(seconds: 5));
+  // }
+
+  void sendMessage(String topic, Map<String, dynamic> payload) {
+    final builder = MqttClientPayloadBuilder()
+    ..addString(jsonEncode(payload));
+    myClient.publishMessage(topic, MqttQos.atLeastOnce, builder.payload!);
   }
 
   void disconnect() {

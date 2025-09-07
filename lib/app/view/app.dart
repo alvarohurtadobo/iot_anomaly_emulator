@@ -11,7 +11,6 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeProvider);
-    final myMqttController = MQTTConttoller()..init();
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
