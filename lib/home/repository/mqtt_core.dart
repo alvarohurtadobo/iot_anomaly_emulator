@@ -52,6 +52,7 @@ class MQTTController {
   void sendMessage(String topic, Map<String, dynamic> payload) {
     final builder = MqttClientPayloadBuilder()
     ..addString(jsonEncode(payload));
+    debugPrint('Sending data: ${jsonEncode(payload)}');
     myClient.publishMessage(topic, MqttQos.atLeastOnce, builder.payload!);
   }
 

@@ -9,6 +9,7 @@ import 'package:iot_anomaly_emulator/devices/providers/sensor_stream_provider.da
 import 'package:iot_anomaly_emulator/devices/view/widgets/history_chart.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/numeric_tile.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/option_tile.dart';
+import 'package:iot_anomaly_emulator/home/providers/mqtt_controller_provider.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class DevicePage extends ConsumerWidget {
@@ -23,6 +24,21 @@ class DevicePage extends ConsumerWidget {
     final sensorData = ref.watch(
       sensorStreamProvider(const Duration(seconds: 1)),
     );
+
+    final mqttController = ref.watch(mqttControllerProvider);
+
+    sensorData.whenData((data) {
+      if (data.values.isNotEmpty) {
+        mqttController.sendMessage(
+          "flutter/sensors/${device.id}", // cada device en su topic
+          {
+            "device": device.name,
+            "timestamp": data.timestamp.toIso8601String(),
+            ...data.values,
+          },
+        );
+      }
+    });
 
     return Scaffold(
       body: Column(
