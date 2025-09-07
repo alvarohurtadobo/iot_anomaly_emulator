@@ -32,8 +32,8 @@ class DevicePage extends ConsumerWidget {
         mqttController.sendMessage(
           "flutter/sensors/${device.id}", // cada device en su topic
           {
-            "device": device.name,
-            "timestamp": data.timestamp.toIso8601String(),
+            'device': device.name,
+            'timestamp': data.timestamp.toIso8601String(),
             ...data.values,
           },
         );
