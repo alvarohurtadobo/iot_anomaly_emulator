@@ -9,11 +9,11 @@ class MQTTController {
   Future<void> init() async {
     // myClient = MqttServerClient()
     myClient =
-        MqttServerClient.withPort(
+        MqttServerClient(
             'broker.emqx.io',
-            'flutter_client',
-            1883,
+            'iot_anomaly_detector_1992',
           )
+          ..port = 1883
           ..keepAlivePeriod = 60
           ..logging(on: true)
           ..onConnected = () {
@@ -50,8 +50,7 @@ class MQTTController {
   // }
 
   void sendMessage(String topic, Map<String, dynamic> payload) {
-    final builder = MqttClientPayloadBuilder()
-    ..addString(jsonEncode(payload));
+    final builder = MqttClientPayloadBuilder()..addString(jsonEncode(payload));
     debugPrint('Sending data: ${jsonEncode(payload)}');
     myClient.publishMessage(topic, MqttQos.atLeastOnce, builder.payload!);
   }
