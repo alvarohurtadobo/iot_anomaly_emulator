@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/providers/locale_provider.dart';
 import 'package:iot_anomaly_emulator/common/routes.dart';
-import 'package:iot_anomaly_emulator/home/repository/mqtt_core.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class App extends ConsumerWidget {
@@ -23,7 +22,6 @@ class App extends ConsumerWidget {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-
       routerConfig: router,
     );
   }

@@ -5,7 +5,7 @@ import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 Drawer myDrawer(BuildContext context) {
   final l10n = context.l10n;
   final location = GoRouterState.of(context).uri.toString();
-  print("Rebuild with location $location");
+  print('Rebuild with location $location');
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -35,7 +35,7 @@ Drawer myDrawer(BuildContext context) {
           leading: const Icon(Icons.hardware),
           title: Text(l10n.devices),
           onTap: () => context
-            ..go('/device/1')
+            ..go('/devices')
             ..pop(),
         ),
         ListTile(
