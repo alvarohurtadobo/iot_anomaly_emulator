@@ -50,7 +50,6 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
   interval,
 ) {
   final processType = ref.watch(currentProcessTypeProvider);
-  final deviceState = ref.watch(currentDeviceStateProvider);
 
   final initialEmulationDatetime =
       ref.watch(currentStartDatetimeProvider) ?? DateTime(2025);
@@ -66,6 +65,7 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
     print(
       'Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation',
     );
+  final deviceState = ref.watch(currentDeviceStateProvider);
 
     if (deviceState == 0) {
       return SensorData(values: {}, timestamp: currentTimestamp);

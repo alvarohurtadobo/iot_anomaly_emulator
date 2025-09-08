@@ -55,6 +55,7 @@ class DevicePage extends ConsumerWidget {
               ref.read(currentProcessTypeProvider.notifier).value = value;
               ref.read(currentStartDatetimeProvider.notifier).setToNow();
             },
+            value: ref.watch(currentProcessTypeProvider) ?? 0,
           ),
           gapH8,
           OptionTile(
@@ -63,6 +64,7 @@ class DevicePage extends ConsumerWidget {
             onChanged: (value) {
               ref.read(currentDeviceStateProvider.notifier).value = value;
             },
+            value: ref.watch(currentDeviceStateProvider) ?? 0,
           ),
           gapH8,
           Text('${l10n.parameter}s:'),
