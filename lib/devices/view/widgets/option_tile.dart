@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
-import 'package:iot_anomaly_emulator/devices/providers/start_datetime_provider.dart';
 
 class OptionTile extends ConsumerWidget {
   const OptionTile({
     required this.title,
     required this.optionsWithId,
+    required this.onChanged,
     super.key,
   });
 
   final String title;
   final List<dynamic> optionsWithId;
+  final void Function(int?) onChanged;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,10 +33,7 @@ class OptionTile extends ConsumerWidget {
                 )
                 .toList(),
             value: ref.watch(currentProcessTypeProvider),
-            onChanged: (value) {
-              ref.read(currentProcessTypeProvider.notifier).value = value;
-              ref.read(currentStartDatetimeProvider.notifier).setToNow();
-            },
+            onChanged: onChanged,
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iot_anomaly_emulator/devices/providers/current_device_state.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 import 'package:iot_anomaly_emulator/devices/providers/start_datetime_provider.dart';
 
@@ -49,6 +50,7 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
   interval,
 ) {
   final processType = ref.watch(currentProcessTypeProvider);
+  final deviceState = ref.watch(currentDeviceStateProvider);
 
   final initialEmulationDatetime =
       ref.watch(currentStartDatetimeProvider) ?? DateTime(2025);
@@ -64,6 +66,10 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
     print(
       'Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation',
     );
+
+    if (deviceState == 0) {
+      return SensorData(values: {}, timestamp: currentTimestamp);
+    }
 
     switch (processType) {
       case 1: // Vibrations

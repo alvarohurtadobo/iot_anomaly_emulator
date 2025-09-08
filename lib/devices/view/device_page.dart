@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
 import 'package:iot_anomaly_emulator/devices/model/device.dart';
+import 'package:iot_anomaly_emulator/devices/model/device_sate.dart';
 import 'package:iot_anomaly_emulator/devices/model/parameters.dart';
 import 'package:iot_anomaly_emulator/devices/model/process_types.dart';
+import 'package:iot_anomaly_emulator/devices/providers/current_device_state.dart';
+import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 import 'package:iot_anomaly_emulator/devices/providers/sensor_history_provider.dart';
 import 'package:iot_anomaly_emulator/devices/providers/sensor_stream_provider.dart';
+import 'package:iot_anomaly_emulator/devices/providers/start_datetime_provider.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/history_chart.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/numeric_tile.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/option_tile.dart';
@@ -30,7 +34,7 @@ class DevicePage extends ConsumerWidget {
     sensorData.whenData((data) {
       if (data.values.isNotEmpty) {
         mqttController.sendMessage(
-          "flutter/sensors/${device.id}", // cada device en su topic
+          'flutter/sensors/${device.id}', // cada device en su topic
           {
             'device': device.name,
             'timestamp': data.timestamp.toIso8601String(),
@@ -47,6 +51,18 @@ class DevicePage extends ConsumerWidget {
           OptionTile(
             title: l10n.process_type,
             optionsWithId: processTypesWithId,
+            onChanged: (value) {
+              ref.read(currentProcessTypeProvider.notifier).value = value;
+              ref.read(currentStartDatetimeProvider.notifier).setToNow();
+            },
+          ),
+          gapH8,
+          OptionTile(
+            title: l10n.device_state,
+            optionsWithId: deviceStatesWithId,
+            onChanged: (value) {
+              ref.read(currentDeviceStateProvider.notifier).value = value;
+            },
           ),
           gapH8,
           Text('${l10n.parameter}s:'),

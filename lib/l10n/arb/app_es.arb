@@ -10,6 +10,7 @@
   "process": "Proceso",
   "parameter": "Parámetro",
   "process_type": "Tipo de proceso",
+  "device_state": "Estado del dispositivo",
   "setting": "Configuración",
   "settings": "Configuraciones"
 }
