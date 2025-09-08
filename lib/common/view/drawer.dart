@@ -26,21 +26,25 @@ Drawer myDrawer(BuildContext context) {
           leading: const Icon(Icons.home),
           title: Text(l10n.home),
           onTap: () {
-            context..go('/')
-            ..pop();
+            context
+              ..go('/')
+              ..pop();
           },
         ),
         ListTile(
           leading: const Icon(Icons.hardware),
-          title:  Text(l10n.devices),
-          onTap: () => context.go('/device/1'),
+          title: Text(l10n.devices),
+          onTap: () => context
+            ..go('/device/1')
+            ..pop(),
         ),
         ListTile(
           leading: const Icon(Icons.settings),
           title: Text(l10n.settings),
           onTap: () {
-            context..go('/settings')
-            ..pop();
+            context
+              ..go('/settings')
+              ..pop();
           },
         ),
         // ListTile(
