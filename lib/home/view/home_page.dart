@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iot_anomaly_emulator/devices/providers/state_stream_provider.dart';
-import 'package:iot_anomaly_emulator/devices/view/widgets/device_button.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,18 +18,20 @@ class CounterView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    return const Scaffold(
-      body: Center(child: Text('Welcome to IoT emulator')),
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   crossAxisAlignment: CrossAxisAlignment.end,
-      //   children: [
-      //     FloatingActionButton(
-      //       onPressed: () {},
-      //       child: const Icon(Icons.add),
-      //     ),
-      //   ],
-      // ),
+    return Scaffold(
+      body: const Center(child: Text('Welcome to IoT emulator')),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              context.go('/devices');
+            },
+            child: const Icon(Icons.remove_red_eye),
+          ),
+        ],
+      ),
     );
   }
 }
