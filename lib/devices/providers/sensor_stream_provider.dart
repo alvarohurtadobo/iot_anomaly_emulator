@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_device_state.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
@@ -30,8 +31,8 @@ double exponentialRandom({double scale = 50}) {
 }
 
 int poissonRandom({double lambda = 2}) {
-  int k = 0;
-  double p = 1.0;
+  var k = 0;
+  var p = 1.0;
   final L = exp(-lambda);
   do {
     k++;
@@ -62,10 +63,10 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
     final elapsedTimeSinceStartEmulation = currentTimestamp
         .difference(initialEmulationDatetime)
         .inSeconds;
-    print(
+    debugPrint(
       'Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation',
     );
-  final deviceState = ref.watch(currentDeviceStateProvider);
+    final deviceState = ref.watch(currentDeviceStateProvider);
 
     if (deviceState == 0) {
       return SensorData(values: {}, timestamp: currentTimestamp);

@@ -10,7 +10,7 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLargeScreen = MediaQuery.of(context).size.width > 800;
+    final isLargeScreen = MediaQuery.sizeOf(context).width > 800;
     final l10n = context.l10n;
 
     if (isLargeScreen) {

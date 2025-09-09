@@ -37,9 +37,9 @@ Future<List<Translate>> getTranslations() async {
       throw Exception('Unable to connect');
     default:
       final json = [
-        {"id": 1, "source": "Hello", "target": "Hola"},
-        {"id": 2, "source": "Good morning", "target": "Buenos días"},
-        {"id": 3, "source": "Thank you", "target": "Gracias"},
+        {'id': 1, 'source': 'Hello', 'target': 'Hola'},
+        {'id': 2, 'source': 'Good morning', 'target': 'Buenos días'},
+        {'id': 3, 'source': 'Thank you', 'target': 'Gracias'},
       ];
       return json.map<Translate>(Translate.fromJson).toList();
   }
