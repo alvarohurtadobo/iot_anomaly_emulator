@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 import 'package:iot_anomaly_emulator/devices/providers/sensor_stream_provider.dart';

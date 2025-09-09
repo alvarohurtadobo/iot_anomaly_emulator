@@ -5,12 +5,13 @@
     "description": "Texto mostrado en la AppBar de la página del contador"
   },
   "device": "Dispositivo",
+  "device_state": "Estado del dispositivo",
   "devices": "Dispositivos",
   "home": "Inicio",
-  "process": "Proceso",
   "parameter": "Parámetro",
+  "process": "Proceso",
   "process_type": "Tipo de proceso",
-  "device_state": "Estado del dispositivo",
   "setting": "Configuración",
-  "settings": "Configuraciones"
+  "settings": "Configuraciones",
+  "welcome_text": "Bienvenido al emulador IoT"
 }

@@ -10,6 +10,7 @@
   "parameter": "Parameter",
   "process": "Process",
   "process_type": "Process Type",
+  "welcome_text": "Welcome to IoT emulator",
   "device_state": "Device State",
   "setting": "Setting",
   "settings": "Settings"

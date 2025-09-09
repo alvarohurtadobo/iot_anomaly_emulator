@@ -19,7 +19,7 @@ class CounterView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     return Scaffold(
-      body: const Center(child: Text('Welcome to IoT emulator')),
+      body: Center(child: Text(l10n.process_type)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
