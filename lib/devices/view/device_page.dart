@@ -34,7 +34,7 @@ class DevicePage extends ConsumerWidget {
     sensorData.whenData((data) {
       if (data.values.isNotEmpty) {
         mqttController.sendMessage(
-          'flutter/sensors/${device.id}', // cada device en su topic
+          'flutter/sensors/${device.id}', // each device
           {
             'device': device.name,
             'timestamp': data.timestamp.toIso8601String(),
