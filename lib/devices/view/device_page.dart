@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
 import 'package:iot_anomaly_emulator/devices/model/device.dart';
-import 'package:iot_anomaly_emulator/devices/model/device_sate.dart';
+import 'package:iot_anomaly_emulator/devices/model/device_state.dart';
 import 'package:iot_anomaly_emulator/devices/model/parameters.dart';
 import 'package:iot_anomaly_emulator/devices/model/process_types.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_device_state.dart';
