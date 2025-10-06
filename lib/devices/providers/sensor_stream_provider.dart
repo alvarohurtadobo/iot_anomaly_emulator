@@ -76,12 +76,14 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
       case 1: // Vibrations
         final vibration =
             sin(elapsedTimeSinceStartEmulation / 5) +
-            normalRandom(mean: 0.0, stdDev: 0.5);
+            normalRandom();
+            // normalRandom(mean: 0.0, stdDev: 0.5);
         return SensorData(
           values: {
             'vibration': vibration,
             'temperature':
-                20 + 2 * vibration + normalRandom(mean: 0, stdDev: 0.5),
+                20 + 2 * vibration + normalRandom(),
+                // 20 + 2 * vibration + normalRandom(mean: 0, stdDev: 0.5),
             'pressure':
                 30 +
                 3 * vibration * vibration +
@@ -92,8 +94,8 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
 
       case 2: // Oil Analysis
         final oilQuality =
-            uniformRandom(min: 0, max: 100) +
-            elapsedTimeSinceStartEmulation * 0.1;
+            // uniformRandom(min: 0, max: 100) +
+            uniformRandom() + elapsedTimeSinceStartEmulation * 0.1;
         return SensorData(
           values: {
             'oil_quality': oilQuality,
