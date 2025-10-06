@@ -1,19 +1,15 @@
 {
   "@@locale": "en",
-  "counterAppBarTitle": "Counter",
-  "@counterAppBarTitle": {
-    "description": "Text shown in the AppBar of the Counter Page"
-  },
+  "cancel": "Cancel",
+  "close": "Close",
   "device": "Device",
+  "device_state": "Device State",
   "devices": "Devices",
   "home": "Home",
   "parameter": "Parameter",
   "process": "Process",
   "process_type": "Process Type",
-  "welcome_text": "Welcome to IoT emulator",
-  "device_state": "Device State",
   "setting": "Setting",
   "settings": "Settings",
-  "close": "Close",
-  "cancel": "Cancel"
+  "welcome_text": "Welcome to IoT emulator"
 }

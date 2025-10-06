@@ -2,10 +2,6 @@
   "@@locale": "es",
   "cancel": "Cancelar",
   "close": "Cerrar",
-  "counterAppBarTitle": "Contador",
-  "@counterAppBarTitle": {
-    "description": "Texto mostrado en la AppBar de la página del contador"
-  },
   "device": "Dispositivo",
   "device_state": "Estado del dispositivo",
   "devices": "Dispositivos",
