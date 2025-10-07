@@ -75,15 +75,16 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
     switch (processType) {
       case 1: // Vibrations
         final vibration =
-            sin(elapsedTimeSinceStartEmulation / 5) +
-            normalRandom();
-            // normalRandom(mean: 0.0, stdDev: 0.5);
+            sin(elapsedTimeSinceStartEmulation / 5) + normalRandom();
+        // normalRandom(mean: 0.0, stdDev: 0.5);
+        debugPrint(
+          'Values: $vibration, ${20 + 2 * vibration + normalRandom()}',
+        );
         return SensorData(
           values: {
             'vibration': vibration,
-            'temperature':
-                20 + 2 * vibration + normalRandom(),
-                // 20 + 2 * vibration + normalRandom(mean: 0, stdDev: 0.5),
+            'temperature': 20 + 2 * vibration + normalRandom(),
+            // 20 + 2 * vibration + normalRandom(mean: 0, stdDev: 0.5),
             'pressure':
                 30 +
                 3 * vibration * vibration +
