@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:iot_anomaly_emulator/common/constants/sizes.dart';
 import 'package:iot_anomaly_emulator/devices/model/types.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
-// import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 class DeviceButton extends ConsumerWidget {
   const DeviceButton({
