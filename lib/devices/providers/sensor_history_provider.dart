@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_anomaly_emulator/devices/providers/current_process_type_provider.dart';
 import 'package:iot_anomaly_emulator/devices/providers/sensor_stream_provider.dart';
@@ -18,7 +19,8 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
     state = [];
 
     // Listen to sensor data
-    final processType = ref.watch(currentProcessTypeProvider);
+    // final processType =
+    ref.watch(currentProcessTypeProvider);
     final stream = ref.watch(
       sensorStreamProvider(const Duration(seconds: 1)).stream,
     );
@@ -32,7 +34,7 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
       } else {
         state = updated;
       }
-      // print('Historic data len: ${updated.length}');
+      debugPrint('Historic data len: ${updated.length}');
     });
 
     ref.onDispose(() => _sub?.cancel());
