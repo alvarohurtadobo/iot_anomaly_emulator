@@ -1,4 +1,4 @@
-import 'dart:convert';
+// import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iot_anomaly_emulator/home/repository/mqtt_core.dart';
 import 'package:mocktail/mocktail.dart';
@@ -30,7 +30,7 @@ void main() {
     controller.sendMessage(topic, payload);
 
     // verify that publishMessage has been called
-    final builder = MqttClientPayloadBuilder()..addString(jsonEncode(payload));
+    // final builder =MqttClientPayloadBuilder()..addString(jsonEncode(payload));
     verify(
       () => mockClient.publishMessage(
         topic,

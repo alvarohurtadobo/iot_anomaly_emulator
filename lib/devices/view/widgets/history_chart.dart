@@ -16,7 +16,8 @@ class HistoryChart extends ConsumerWidget {
 
     final processTypeId = ref.watch(currentProcessTypeProvider);
 
-    final processType = processTypesWithId.firstWhere(
+    // final processType =
+    processTypesWithId.firstWhere(
       (pType) => pType.id == processTypeId,
     );
 

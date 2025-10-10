@@ -24,7 +24,8 @@ class DevicePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final device = emulatedDevices.firstWhere((e) => e.id == deviceId);
-    final history = ref.watch(sensorHistoryProvider);
+    // final history =
+    ref.watch(sensorHistoryProvider);
     final sensorData = ref.watch(
       sensorStreamProvider(const Duration(seconds: 1)),
     );

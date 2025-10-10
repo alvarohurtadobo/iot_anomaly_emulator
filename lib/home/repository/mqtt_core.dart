@@ -25,8 +25,8 @@ class MQTTController {
             debugPrint('Successfully subscribed to $topic');
           };
 
-    await myClient.connect().catchError((e) {
-      debugPrint('Error: $e');
+    await myClient.connect().catchError((_) {
+      // debugPrint('Error: $e');
       myClient.disconnect();
       return MqttClientConnectionStatus()..disconnectionOrigin;
     });
