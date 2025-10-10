@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      run: dart format --line-length 80 {staged_files}
+      stage_fixed: true
+    analyze:
+      run: flutter analyze
