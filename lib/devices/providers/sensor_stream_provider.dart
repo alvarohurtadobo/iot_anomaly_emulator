@@ -64,7 +64,7 @@ sensorStreamProvider = StreamProvider.family<SensorData, Duration>((
         .difference(initialEmulationDatetime)
         .inSeconds;
     debugPrint(
-      'Initial $initialEmulationDatetime, elapsed time: $elapsedTimeSinceStartEmulation',
+      'Init $initialEmulationDatetime, time: $elapsedTimeSinceStartEmulation',
     );
     final deviceState = ref.watch(currentDeviceStateProvider);
 
