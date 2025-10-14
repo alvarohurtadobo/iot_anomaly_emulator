@@ -21,8 +21,7 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
     // Listen to sensor data
     // final processType =
     ref.watch(currentProcessTypeProvider);
-    final stream = ref.watch(
-      sensorStreamProvider(const Duration(seconds: 1)).stream,
+    final stream = ref.watch(sensorStreamProvider(const Duration(seconds: 1)).stream,
     );
 
     _sub?.cancel();
