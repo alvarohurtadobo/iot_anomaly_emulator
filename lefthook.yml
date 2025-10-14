@@ -24,8 +24,8 @@ pre-commit:
       glob: "*.dart"
       exclude: "*.{g,freezed}.dart"
       run: |
-        echo "Formatting code using Melos..."
-        melos format
+        echo "Formatting code using Dart..."
+        dart format --line-length 80 {staged_files}
         echo "Adding all formatted files to staging..."
         git add -u
       # run: dart format --line-length 80 {staged_files}
