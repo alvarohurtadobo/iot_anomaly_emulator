@@ -15,7 +15,6 @@ class SensorHistoryNotifier extends Notifier<List<SensorData>> {
 
   @override
   List<SensorData> build() {
-    // Initial empty state
     state = [];
 
     // Listen to sensor data
