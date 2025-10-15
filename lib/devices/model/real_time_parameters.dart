@@ -14,19 +14,18 @@ class RealTimeParameters {
     required this.timestamp,
   });
 
-  /// Para crear la clase desde JSON
   factory RealTimeParameters.fromJson(Map<String, dynamic> json) {
     return RealTimeParameters(
       vibration: double.tryParse(json['vibration'].toString()),
       temperature: double.tryParse(json['temperature'].toString()),
       pressure: double.tryParse(json['pressure'].toString()),
       oilQuality: double.tryParse(json['oil_quality'].toString()),
-      contaminantLevel:
-          double.tryParse(json['contaminant_level'].toString()),
+      contaminantLevel: double.tryParse(json['contaminant_level'].toString()),
       acidity: double.tryParse(json['acidity'].toString()) ?? 0,
       hoursOperated: double.tryParse(json['hours_operated'].toString()),
-      maintenanceHistory:
-          double.tryParse(json['maintenance_history'].toString()),
+      maintenanceHistory: double.tryParse(
+        json['maintenance_history'].toString(),
+      ),
       load: double.tryParse(json['load'].toString()),
       failure: (json['failure'] as bool?) ?? false,
       anomaly: (json['anomaly'] as bool?) ?? false,
