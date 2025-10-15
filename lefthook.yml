@@ -2,7 +2,6 @@ pre-commit:
   parallel: true
   commands:
     flutter_lint_code:
-      # root: "packages/"
       glob: "*.dart"
       exclude: "*.{g,freezed}.dart"
       run: |
@@ -11,7 +10,6 @@ pre-commit:
         done
       stage_fixed: true
     analyze:
-      # name: "Analyze only staged Dart files"
       run: |
         FILES=$(git diff --name-only --cached -- '*.dart' | tr '\n' ' ')
         if [ -n "$FILES" ]; then
@@ -27,19 +25,4 @@ pre-commit:
         echo "Formatting code using Dart..."
         dart format --line-length 80 {staged_files}
         echo "Adding all formatted files to staging..."
-        git add -u
-      # run: dart format --line-length 80 {staged_files}
-      # run: |
-      #   FILES=$(git diff --name-only --cached -- '*.dart' | tr '\n' ' ')
-      #   if [ -n "$FILES" ]; then
-      #     echo "Formatting staged files with Melos: $FILES"
-      #     melos exec -- dart format --line-length 80 $FILES
-      #   else
-      #     echo "No staged Dart files to format."
-      #   fi
       stage_fixed: true
-    # analyze:
-    #   run: melos run analyze:affected
-    #   # run: melos exec -- flutter analyze . Sugerido ChatGPT
-    # test:
-    #   run: melos exec -- flutter test --no-pub
