@@ -1,5 +1,4 @@
 pre-commit:
-  parallel: true
   commands:
     flutter_lint_code:
       glob: "*.dart"
