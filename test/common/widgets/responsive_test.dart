@@ -4,7 +4,9 @@ import 'package:iot_anomaly_emulator/common/widgets/responsive.dart';
 
 void main() {
   group('Responsive Widget', () {
-    testWidgets('should render desktop version for width >= 1024', (tester) async {
+    testWidgets('should render desktop version for width >= 1024', (
+      tester,
+    ) async {
       // Arrange
       const desktopWidget = Text('Desktop');
       const tabletWidget = Text('Tablet');
@@ -12,10 +14,10 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(size: Size(1200, 800)),
-            child: const Responsive(
+            data: MediaQueryData(size: Size(1200, 800)),
+            child: Responsive(
               desktop: desktopWidget,
               tablet: tabletWidget,
               mobile: mobileWidget,
@@ -30,7 +32,9 @@ void main() {
       expect(find.text('Mobile'), findsNothing);
     });
 
-    testWidgets('should render tablet version for 640 <= width < 1024', (tester) async {
+    testWidgets('should render tablet version for 640 <= width < 1024', (
+      tester,
+    ) async {
       // Arrange
       const desktopWidget = Text('Desktop');
       const tabletWidget = Text('Tablet');
@@ -38,10 +42,10 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(size: Size(800, 600)),
-            child: const Responsive(
+            data: MediaQueryData(size: Size(800, 600)),
+            child: Responsive(
               desktop: desktopWidget,
               tablet: tabletWidget,
               mobile: mobileWidget,
@@ -64,10 +68,10 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(size: Size(500, 800)),
-            child: const Responsive(
+            data: MediaQueryData(size: Size(500, 800)),
+            child: Responsive(
               desktop: desktopWidget,
               tablet: tabletWidget,
               mobile: mobileWidget,
@@ -89,10 +93,10 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(size: Size(800, 600)),
-            child: const Responsive(
+            data: MediaQueryData(size: Size(800, 600)),
+            child: Responsive(
               desktop: desktopWidget,
               mobile: mobileWidget,
             ),
@@ -112,10 +116,10 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(size: Size(400, 800)),
-            child: const Responsive(
+            data: MediaQueryData(size: Size(400, 800)),
+            child: Responsive(
               desktop: desktopWidget,
               tablet: tabletWidget,
             ),
@@ -128,16 +132,18 @@ void main() {
       expect(find.text('Tablet'), findsNothing);
     });
 
-    testWidgets('should render desktop when both tablet and mobile are null', (tester) async {
+    testWidgets('should render desktop when both tablet and mobile are null', (
+      tester,
+    ) async {
       // Arrange
       const desktopWidget = Text('Desktop');
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: MediaQuery(
-            data: const MediaQueryData(size: Size(400, 800)),
-            child: const Responsive(
+            data: MediaQueryData(size: Size(400, 800)),
+            child: Responsive(
               desktop: desktopWidget,
             ),
           ),
@@ -148,7 +154,9 @@ void main() {
       expect(find.text('Desktop'), findsOneWidget);
     });
 
-    testWidgets('isDesktop should return true for width >= 1024', (tester) async {
+    testWidgets('isDesktop should return true for width >= 1024', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(1200, 800)),
@@ -167,7 +175,9 @@ void main() {
       expect(find.text('true'), findsOneWidget);
     });
 
-    testWidgets('isDesktop should return false for width < 1024', (tester) async {
+    testWidgets('isDesktop should return false for width < 1024', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(800, 600)),
@@ -186,7 +196,9 @@ void main() {
       expect(find.text('false'), findsOneWidget);
     });
 
-    testWidgets('isTablet should return true for 640 <= width < 1024', (tester) async {
+    testWidgets('isTablet should return true for 640 <= width < 1024', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(800, 600)),
@@ -205,7 +217,9 @@ void main() {
       expect(find.text('true'), findsOneWidget);
     });
 
-    testWidgets('isTablet should return false for width >= 1024', (tester) async {
+    testWidgets('isTablet should return false for width >= 1024', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(1200, 800)),
@@ -262,7 +276,9 @@ void main() {
       expect(find.text('true'), findsOneWidget);
     });
 
-    testWidgets('isMobile should return false for width >= 640', (tester) async {
+    testWidgets('isMobile should return false for width >= 640', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(800, 600)),
@@ -281,7 +297,9 @@ void main() {
       expect(find.text('false'), findsOneWidget);
     });
 
-    testWidgets('edge case: exactly 640 width should return tablet', (tester) async {
+    testWidgets('edge case: exactly 640 width should return tablet', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(640, 800)),
@@ -301,7 +319,9 @@ void main() {
       expect(find.text('tablet:true, mobile:false'), findsOneWidget);
     });
 
-    testWidgets('edge case: exactly 1024 width should return desktop', (tester) async {
+    testWidgets('edge case: exactly 1024 width should return desktop', (
+      tester,
+    ) async {
       // Arrange
       final widget = MediaQuery(
         data: const MediaQueryData(size: Size(1024, 800)),
@@ -322,4 +342,3 @@ void main() {
     });
   });
 }
-

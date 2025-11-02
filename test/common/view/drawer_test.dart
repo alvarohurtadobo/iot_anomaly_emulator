@@ -140,8 +140,13 @@ void main() {
       await tester.pumpAndSettle();
 
       // Assert
-      final drawerHeader = tester.widget<DrawerHeader>(find.byType(DrawerHeader));
-      expect((drawerHeader.decoration as BoxDecoration).color, equals(Colors.blue));
+      final drawerHeader = tester.widget<DrawerHeader>(
+        find.byType(DrawerHeader),
+      );
+      expect(
+        (drawerHeader.decoration as BoxDecoration).color,
+        equals(Colors.blue),
+      );
     });
 
     testWidgets('should have correct header text style', (tester) async {
@@ -194,4 +199,3 @@ void main() {
     });
   });
 }
-
