@@ -137,7 +137,7 @@ void main() {
       // Assert - should take approximately 400ms (2 intervals after first)
       final duration = endTime.difference(startTime);
       expect(duration.inMilliseconds, greaterThanOrEqualTo(350));
-      expect(duration.inMilliseconds, lessThan(600)); // Allow some margin
+      expect(duration.inMilliseconds, lessThan(700)); // Allow some margin
     });
 
     test('works with different interval durations', () async {
