@@ -117,9 +117,9 @@ void main() {
       // Check order: Home, Devices, Settings
       final listTiles = tester.widgetList<ListTile>(icons).toList();
       expect(listTiles[0].leading, isA<Icon>());
-      expect((listTiles[0].leading as Icon).icon, equals(Icons.home));
-      expect((listTiles[1].leading as Icon).icon, equals(Icons.hardware));
-      expect((listTiles[2].leading as Icon).icon, equals(Icons.settings));
+      expect((listTiles[0].leading! as Icon).icon, equals(Icons.home));
+      expect((listTiles[1].leading! as Icon).icon, equals(Icons.hardware));
+      expect((listTiles[2].leading! as Icon).icon, equals(Icons.settings));
     });
 
     testWidgets('should have correct drawer header color', (tester) async {
@@ -144,7 +144,7 @@ void main() {
         find.byType(DrawerHeader),
       );
       expect(
-        (drawerHeader.decoration as BoxDecoration).color,
+        (drawerHeader.decoration! as BoxDecoration).color,
         equals(Colors.blue),
       );
     });

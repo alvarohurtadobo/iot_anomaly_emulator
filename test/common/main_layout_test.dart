@@ -6,13 +6,15 @@ import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 
 void main() {
   group('MainLayout', () {
-    testWidgets('should render NavigationRail for large screens', (tester) async {
+    testWidgets('should render NavigationRail for large screens', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
       );
 
@@ -28,7 +30,7 @@ void main() {
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
         windowSize: const Size(600, 800),
       );
@@ -45,7 +47,7 @@ void main() {
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
         windowSize: const Size(600, 800),
       );
@@ -60,7 +62,7 @@ void main() {
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
       );
 
@@ -68,13 +70,15 @@ void main() {
       expect(find.byType(AppBar), findsNothing);
     });
 
-    testWidgets('should show correct title for home in small screen', (tester) async {
+    testWidgets('should show correct title for home in small screen', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
         windowSize: const Size(600, 800),
       );
@@ -83,13 +87,15 @@ void main() {
       expect(find.text('Home'), findsOneWidget);
     });
 
-    testWidgets('should show correct title for devices in small screen', (tester) async {
+    testWidgets('should show correct title for devices in small screen', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/devices',
         windowSize: const Size(600, 800),
       );
@@ -98,13 +104,15 @@ void main() {
       expect(find.text('Devices'), findsOneWidget);
     });
 
-    testWidgets('should show correct title for settings in small screen', (tester) async {
+    testWidgets('should show correct title for settings in small screen', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/settings',
         windowSize: const Size(600, 800),
       );
@@ -119,42 +127,52 @@ void main() {
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
       );
 
       // Assert
-      final navigationRail = tester.widget<NavigationRail>(find.byType(NavigationRail));
+      final navigationRail = tester.widget<NavigationRail>(
+        find.byType(NavigationRail),
+      );
       expect(navigationRail.selectedIndex, equals(0));
     });
 
-    testWidgets('should have correct selected index for devices', (tester) async {
+    testWidgets('should have correct selected index for devices', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/devices',
       );
 
       // Assert
-      final navigationRail = tester.widget<NavigationRail>(find.byType(NavigationRail));
+      final navigationRail = tester.widget<NavigationRail>(
+        find.byType(NavigationRail),
+      );
       expect(navigationRail.selectedIndex, equals(1));
     });
 
-    testWidgets('should have correct selected index for settings', (tester) async {
+    testWidgets('should have correct selected index for settings', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/settings',
       );
 
       // Assert
-      final navigationRail = tester.widget<NavigationRail>(find.byType(NavigationRail));
+      final navigationRail = tester.widget<NavigationRail>(
+        find.byType(NavigationRail),
+      );
       expect(navigationRail.selectedIndex, equals(2));
     });
 
@@ -164,22 +182,26 @@ void main() {
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
       );
 
       // Assert
-      final navigationRail = tester.widget<NavigationRail>(find.byType(NavigationRail));
+      final navigationRail = tester.widget<NavigationRail>(
+        find.byType(NavigationRail),
+      );
       expect(navigationRail.destinations.length, equals(3));
     });
 
-    testWidgets('should have correct icons for navigation destinations', (tester) async {
+    testWidgets('should have correct icons for navigation destinations', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
       );
 
@@ -200,13 +222,15 @@ void main() {
       expect(layout.child, equals(child));
     });
 
-    testWidgets('should have correct border case for 800px width', (tester) async {
+    testWidgets('should have correct border case for 800px width', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act - 800px should be small screen (not > 800)
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
         windowSize: const Size(800, 800),
       );
@@ -216,13 +240,15 @@ void main() {
       expect(find.byType(Drawer), findsOneWidget);
     });
 
-    testWidgets('should have correct border case for 801px width', (tester) async {
+    testWidgets('should have correct border case for 801px width', (
+      tester,
+    ) async {
       // Arrange
       const child = Text('Test Content');
 
       // Act - 801px should be large screen (> 800)
       await tester.pumpAppWithRouter(
-        MainLayout(child: child),
+        const MainLayout(child: child),
         '/',
         windowSize: const Size(801, 800),
       );
@@ -271,4 +297,3 @@ extension MainLayoutTest on WidgetTester {
     );
   }
 }
-

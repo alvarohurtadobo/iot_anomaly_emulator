@@ -56,20 +56,20 @@ void main() {
       final mockController = MockMQTTController();
       when(mockController.disconnect).thenReturn(null);
 
-      final container = ProviderContainer(
+      ProviderContainer(
         overrides: [
           mqttControllerProvider.overrideWith((ref) {
             ref.onDispose(mockController.disconnect);
             return mockController;
           }),
         ],
-      );
+      )
 
       // Act - leer el provider para activar onDispose
-      container.read(mqttControllerProvider);
+      ..read(mqttControllerProvider)
 
       // Assert - al destruir el container, se debe llamar disconnect
-      container.dispose();
+      ..dispose();
 
       verify(mockController.disconnect).called(1);
     });

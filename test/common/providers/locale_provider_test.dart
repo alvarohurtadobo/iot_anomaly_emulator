@@ -25,7 +25,7 @@ void main() {
 
     test('should update locale correctly', () {
       // Arrange
-      final newLocale = const Locale('es');
+      const newLocale = Locale('es');
 
       // Act
       container.read(localeProvider.notifier).state = newLocale;
@@ -47,7 +47,7 @@ void main() {
 
     test('should preserve locale across multiple reads', () {
       // Arrange
-      final testLocale = const Locale('fr');
+      const testLocale = Locale('fr');
       container.read(localeProvider.notifier).state = testLocale;
 
       // Act
@@ -76,4 +76,3 @@ void main() {
     });
   });
 }
-
