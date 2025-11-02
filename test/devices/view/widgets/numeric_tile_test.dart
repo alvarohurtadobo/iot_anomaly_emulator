@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iot_anomaly_emulator/devices/view/widgets/numeric_tile.dart';
-import 'package:test/helpers/pump_app.dart';
+import '../../../helpers/pump_app.dart';
 
 void main() {
   group('NumericTile', () {
