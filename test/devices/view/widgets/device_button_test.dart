@@ -168,9 +168,9 @@ void main() {
             routes: [
               GoRoute(
                 path: '/',
-                builder: (context, state) => const Scaffold(
-                  body: ProviderScope(
-                    parent: UncontrolledProviderScope(container: container),
+                builder: (context, state) => Scaffold(
+                  body: UncontrolledProviderScope(
+                    container: container,
                     child: deviceButton,
                   ),
                 ),

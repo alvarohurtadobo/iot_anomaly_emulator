@@ -34,7 +34,7 @@ void main() {
       );
 
       // Act - wait for stream to emit data
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future<void>.delayed(const Duration(milliseconds: 200));
 
       // Assert
       final history = container.read(sensorHistoryProvider);
@@ -51,7 +51,7 @@ void main() {
       );
 
       // Act - wait for many emissions
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future<void>.delayed(const Duration(milliseconds: 500));
 
       // Assert
       final history = container.read(sensorHistoryProvider);
@@ -73,7 +73,7 @@ void main() {
       final initialHistory = container.read(sensorHistoryProvider);
 
       // Act - wait for more data
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future<void>.delayed(const Duration(milliseconds: 200));
 
       // Assert
       final updatedHistory = container.read(sensorHistoryProvider);
@@ -92,7 +92,7 @@ void main() {
         sensorStreamProvider(const Duration(milliseconds: 50)).future,
       );
 
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future<void>.delayed(const Duration(milliseconds: 100));
 
       final historyBefore = container.read(sensorHistoryProvider).length;
 
@@ -100,7 +100,7 @@ void main() {
       container.read(currentProcessTypeProvider.notifier).value = 2;
 
       // Wait for new data
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future<void>.delayed(const Duration(milliseconds: 200));
 
       // Assert
       final historyAfter = container.read(sensorHistoryProvider);
@@ -117,7 +117,7 @@ void main() {
       );
 
       // Act - wait for many emissions to exceed maxLength
-      await Future.delayed(const Duration(milliseconds: 1000));
+      await Future<void>.delayed(const Duration(milliseconds: 1000));
 
       // Assert
       final history = container.read(sensorHistoryProvider);
@@ -141,7 +141,7 @@ void main() {
       );
 
       // Act - wait for data
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future<void>.delayed(const Duration(milliseconds: 200));
 
       // Assert
       final history = container.read(sensorHistoryProvider);
@@ -158,9 +158,7 @@ void main() {
         sensorStreamProvider(const Duration(milliseconds: 50)).future,
       );
 
-      await Future.delayed(const Duration(milliseconds: 100));
-
-      final historyBefore = container.read(sensorHistoryProvider).length;
+      await Future<void>.delayed(const Duration(milliseconds: 100));
 
       // Act - dispose container
       container.dispose();
@@ -170,7 +168,7 @@ void main() {
       newContainer.read(currentProcessTypeProvider.notifier).value = 1;
 
       // Wait a bit
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future<void>.delayed(const Duration(milliseconds: 100));
 
       // Assert - new container should have fresh history
       final newHistory = newContainer.read(sensorHistoryProvider);
