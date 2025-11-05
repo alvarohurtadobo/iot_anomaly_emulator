@@ -1,124 +1,175 @@
-# ESP32 Anomaly Detector
+# Emulador de Anomalías IoT
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
-
 ---
 
-## Install ESPRESSIF software in Mac
+## 📋 Descripción
 
+Emulador de Anomalías IoT es una aplicación Flutter diseñada para emular dispositivos industriales IoT y generar datos de sensores en tiempo real. La aplicación permite simular diferentes tipos de procesos industriales, visualizar datos de sensores mediante gráficos y publicar la información mediante el protocolo MQTT.
 
+## ✨ Características Principales
 
-Instalar las dependencias
-El esp-idf utiliza algunas dependencias como cmake y ninja para la compilación de proyectos, las dependencias varían dependiendo del sistema operativo, pero en Unix se recomiendan las siguientes: cmake ninja dfu-util
+- **Emulación de Dispositivos Industriales**: Simula múltiples dispositivos industriales (DeMag, Arc Solder, Hornos Industriales, etc.)
+- **Múltiples Tipos de Procesos**: Soporta tres tipos de procesos diferentes:
+  - **Vibraciones**: Genera datos de vibración, temperatura y presión
+  - **Análisis de Aceite**: Simula calidad de aceite, nivel de contaminantes y acidez
+  - **Horas Operadas**: Genera datos de horas de operación, historial de mantenimiento y carga
+- **Visualización en Tiempo Real**: Gráficos interactivos que muestran la evolución de los parámetros de sensores
+- **Integración MQTT**: Publica datos de sensores a un broker MQTT para integración con sistemas externos
+- **Gestión de Estado**: Control del estado de los dispositivos (encendido/apagado)
+- **Interfaz Multilingüe**: Soporte para español e inglés
+- **Múltiples Entornos**: Configuración para desarrollo, staging y producción
 
-Por lo tanto, podemos instalarlas con el siguiente comando:
+## 🛠️ Tecnologías Utilizadas
+
+- **Flutter**: Framework multiplataforma
+- **Riverpod**: Gestión de estado reactiva
+- **GoRouter**: Navegación y enrutamiento
+- **MQTT Client**: Cliente MQTT para publicación de datos
+- **FL Chart**: Gráficos y visualización de datos
+- **Flutter Localizations**: Internacionalización
+
+## 📦 Instalación
+
+### Requisitos Previos
+
+- Flutter SDK (versión 3.8.0 o superior)
+- Dart SDK
+- Un editor de código (VS Code, Android Studio, etc.)
+
+### Pasos de Instalación
+
+1. Clona el repositorio:
 ```sh
-brew install git cmake ninja dfu-util python3@3.10
+git clone <url-del-repositorio>
+cd iot_anomaly_emulator
 ```
 
-make sure you have Xcode installed otherwise install with:
+2. Instala las dependencias:
 ```sh
-xcode-select --install
+flutter pub get
 ```
 
-En caso de que surja algún mensaje de error de compatibilidad o al instalar el software, puedes asegurarte primero actualizar tu sistema con: /usr/sbin/softwareupdate --install-rosetta --agree-to-license, y luego volver a intentar con la instalación.
-
-Create a virtual environment, in my case I use Anaconda and python 3.10
-
+3. Ejecuta la aplicación:
 ```sh
-conda install --name espcom python=3.10
+# Desarrollo
+flutter run -t lib/main_development.dart
+
+# Staging
+flutter run -t lib/main_staging.dart
+
+# Producción
+flutter run -t lib/main_production.dart
 ```
 
-Inside a directory of your preference clone the ESPRESSIF repo, in my case use 4.4.2:
+## 🚀 Uso de la Aplicación
 
-```sh
-git clone -b v4.4.2 --recursive https://github.com/espressif/esp-idf.git
+### Navegación
+
+La aplicación cuenta con las siguientes secciones:
+
+- **Inicio**: Página principal de la aplicación
+- **Dispositivos**: Lista de todos los dispositivos emulados disponibles
+- **Detalle del Dispositivo**: Vista detallada de un dispositivo específico con:
+  - Selección del tipo de proceso
+  - Control del estado del dispositivo
+  - Visualización de parámetros en tiempo real
+  - Gráficos históricos de los sensores
+- **Configuración**: Ajustes de la aplicación
+
+### Tipos de Procesos
+
+#### 1. Vibraciones
+Genera datos simulados de:
+- **Vibración**: Señal sinusoidal con ruido gaussiano
+- **Temperatura**: Correlacionada con la vibración
+- **Presión**: Relacionada con el cuadrado de la vibración
+
+#### 2. Análisis de Aceite
+Simula parámetros de calidad de aceite:
+- **Calidad del Aceite**: Valores uniformes con degradación temporal
+- **Nivel de Contaminantes**: Correlacionado con la calidad del aceite
+- **Acidez**: Relacionada con la raíz cúbica de la calidad
+
+#### 3. Horas Operadas
+Genera datos de operación:
+- **Horas Operadas**: Distribución exponencial con incremento temporal
+- **Historial de Mantenimiento**: Distribución de Poisson
+- **Carga**: Valores normales con tendencia temporal
+
+### Configuración MQTT
+
+La aplicación está configurada para publicar datos al broker MQTT público `broker.emqx.io` en el puerto 1883. Los datos se publican en el tópico:
+
+```
+flutter/sensors/{device_id}
 ```
 
-Get inside that directory and run:
-
-```sh
-. ./install.sh
+El formato del mensaje JSON es:
+```json
+{
+  "device": "Nombre del dispositivo",
+  "timestamp": "2025-01-01T12:00:00.000Z",
+  "parametro1": valor1,
+  "parametro2": valor2,
+  ...
+}
 ```
 
-Whenever you want to use this elements you must run this on your terminal:
-```sh
-. ~/esp/esp-idf/export.sh 
-```
+Para cambiar la configuración del broker MQTT, edita el archivo `lib/home/repository/mqtt_core.dart`.
 
-If you want to run it automatically, you can add it to your .zshrc:
-```sh
-alias get_idf='. ~/esp/esp-idf/export.sh'
-```
+## 🧪 Ejecución de Pruebas
 
-En caso de tener problemas con la version de cmake, uno puede instalar la version correspondiente a la version 4.4.2 y seleccionarla con los siguientes comandos, en mi caso la instalada era cmake version 4.0.3
+Para ejecutar todas las pruebas unitarias y de widgets:
 
 ```sh
-brew install cmake@3.23
-brew unlink cmake
-brew link cmake@3.23
+very_good test --coverage --test-randomize-ordering-seed random
 ```
 
-
-
-## Running Tests
-
-To run all unit and widget tests use the following command:
+Para visualizar el reporte de cobertura generado, puedes usar [lcov](https://github.com/linux-test-project/lcov):
 
 ```sh
-$ very_good test --coverage --test-randomize-ordering-seed random
+# Generar reporte de cobertura
+genhtml coverage/lcov.info -o coverage/
+
+# Abrir reporte de cobertura
+open coverage/index.html
 ```
 
-To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
+## 🌐 Trabajando con Traducciones
 
-```sh
-# Generate Coverage Report
-$ genhtml coverage/lcov.info -o coverage/
+Este proyecto utiliza [flutter_localizations][flutter_localizations_link] y sigue la [guía oficial de internacionalización para Flutter][internationalization_link].
 
-# Open Coverage Report
-$ open coverage/index.html
-```
+### Agregar Cadenas de Texto
 
----
-
-## Working with Translations 🌐
-
-This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
-
-### Adding Strings
-
-1. To add a new localizable string, open the `app_en.arb` file at `lib/l10n/arb/app_en.arb`.
+1. Para agregar una nueva cadena localizable, abre el archivo `app_es.arb` en `lib/l10n/arb/app_es.arb`.
 
 ```arb
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+    "@@locale": "es",
+    "nuevaCadena": "Nuevo Texto",
+    "@nuevaCadena": {
+        "description": "Descripción del nuevo texto"
     }
 }
 ```
 
-2. Then add a new key/value and description
+2. Agrega también la traducción en inglés en `app_en.arb`:
 
 ```arb
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
-    "helloWorld": "Hello World",
-    "@helloWorld": {
-        "description": "Hello World Text"
+    "nuevaCadena": "New Text",
+    "@nuevaCadena": {
+        "description": "Description of the new text"
     }
 }
 ```
 
-3. Use the new string
+3. Usa la nueva cadena en el código:
 
 ```dart
 import 'package:iot_anomaly_emulator/l10n/l10n.dart';
@@ -126,74 +177,100 @@ import 'package:iot_anomaly_emulator/l10n/l10n.dart';
 @override
 Widget build(BuildContext context) {
   final l10n = context.l10n;
-  return Text(l10n.helloWorld);
+  return Text(l10n.nuevaCadena);
 }
 ```
 
-### Adding Supported Locales
+### Agregar Idiomas Soportados
 
-Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info.plist` to include the new locale.
+Actualiza el array `CFBundleLocalizations` en `Info.plist` en `ios/Runner/Info.plist` para incluir el nuevo idioma.
 
 ```xml
-    ...
-
-    <key>CFBundleLocalizations</key>
-	<array>
-		<string>en</string>
-		<string>es</string>
-	</array>
-
-    ...
+<key>CFBundleLocalizations</key>
+<array>
+    <string>en</string>
+    <string>es</string>
+</array>
 ```
 
-### Adding Translations
+### Generar Traducciones
 
-1. For each supported locale, add a new ARB file in `lib/l10n/arb`.
+Para usar los últimos cambios de traducción, necesitarás generarlos:
 
-```
-├── l10n
-│   ├── arb
-│   │   ├── app_en.arb
-│   │   └── app_es.arb
-```
-
-2. Add the translated strings to each `.arb` file:
-
-`app_en.arb`
-
-```arb
-{
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
-}
-```
-
-`app_es.arb`
-
-```arb
-{
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
-}
-```
-
-### Generating Translations
-
-To use the latest translations changes, you will need to generate them:
-
-1. Generate localizations for the current project:
+1. Genera las localizaciones para el proyecto actual:
 
 ```sh
 flutter gen-l10n --arb-dir="lib/l10n/arb"
 ```
 
-Alternatively, run `flutter run` and code generation will take place automatically.
+Alternativamente, ejecuta `flutter run` y la generación de código se realizará automáticamente.
+
+## 📱 Dispositivos Emulados
+
+La aplicación incluye los siguientes dispositivos predefinidos:
+
+1. **DeMag400** - Tipo: IMM, Proceso: Horas Operadas
+2. **Arc Solder** - Tipo: ARC, Proceso: Análisis de Aceite
+3. **DeMag300** - Tipo: Otro, Proceso: Vibraciones
+4. **DeMag400** - Tipo: IMM, Proceso: Horas Operadas
+5. **Industrial Oven** - Tipo: IMM, Proceso: Análisis de Aceite
+6. **Industrial fridge** - Tipo: Otro, Proceso: Vibraciones
+
+Los dispositivos pueden ser configurados en `lib/devices/model/device.dart`.
+
+## 📊 Generación de Datos
+
+Los datos de sensores se generan usando distribuciones estadísticas:
+
+- **Distribución Normal**: Para valores con ruido gaussiano (Box-Muller)
+- **Distribución Exponencial**: Para valores con distribución exponencial
+- **Distribución de Poisson**: Para conteos discretos
+- **Distribución Uniforme**: Para valores aleatorios uniformes
+
+Los datos se actualizan cada segundo y se publican automáticamente al broker MQTT cuando el dispositivo está encendido.
+
+## 🔧 Configuración de Entornos
+
+El proyecto incluye tres entornos de ejecución:
+
+- **Development** (`main_development.dart`): Para desarrollo local
+- **Staging** (`main_staging.dart`): Para pruebas en un entorno de staging
+- **Production** (`main_production.dart`): Para producción
+
+Cada entorno puede tener configuraciones específicas según sea necesario.
+
+## 📝 Estructura del Proyecto
+
+```
+lib/
+├── app/                    # Configuración de la aplicación
+├── bootstrap.dart          # Inicialización de la aplicación
+├── common/                 # Componentes comunes
+│   ├── constants/          # Constantes
+│   ├── providers/          # Proveedores comunes
+│   ├── routes.dart         # Configuración de rutas
+│   ├── view/               # Vistas comunes
+│   └── widgets/            # Widgets reutilizables
+├── devices/                # Módulo de dispositivos
+│   ├── model/              # Modelos de datos
+│   ├── providers/          # Proveedores de estado
+│   └── view/               # Vistas de dispositivos
+├── home/                   # Módulo principal
+│   ├── providers/          # Proveedores MQTT
+│   ├── repository/         # Repositorio MQTT
+│   └── view/               # Vistas principales
+├── l10n/                   # Internacionalización
+│   ├── arb/                # Archivos de traducción
+│   └── gen/                # Código generado
+└── settings/               # Módulo de configuración
+    └── view/               # Vista de configuración
+```
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo LICENSE para más detalles.
+
+---
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
