@@ -8,7 +8,7 @@ void main() {
       final timestamp = DateTime.now();
 
       // Act
-      const parameters = RealTimeParameters(
+      final parameters = RealTimeParameters(
         vibration: 1.5,
         temperature: 25,
         pressure: 30,
@@ -20,7 +20,7 @@ void main() {
         load: 75,
         failure: false,
         anomaly: false,
-        timestamp: null,
+        timestamp: timestamp,
       );
 
       // Assert
@@ -35,6 +35,7 @@ void main() {
       expect(parameters.load, equals(75.0));
       expect(parameters.failure, isFalse);
       expect(parameters.anomaly, isFalse);
+      expect(parameters.timestamp, equals(timestamp));
     });
 
     test('should create from JSON with all fields', () {
@@ -135,7 +136,7 @@ void main() {
     test('should convert to JSON correctly', () {
       // Arrange
       final timestamp = DateTime.now();
-      const parameters = RealTimeParameters(
+      final parameters = RealTimeParameters(
         vibration: 1.5,
         temperature: 25,
         pressure: 30,
@@ -147,7 +148,7 @@ void main() {
         load: 75,
         failure: false,
         anomaly: false,
-        timestamp: null,
+        timestamp: timestamp,
       );
 
       // Act
@@ -234,8 +235,9 @@ void main() {
 
     test('should handle null values in copyWith', () {
       // Arrange
-      final timestamp = DateTime.now();
-      const original = RealTimeParameters(
+      final originalTimestamp = DateTime.now();
+      final newTimestamp = DateTime.now().add(const Duration(hours: 1));
+      final original = RealTimeParameters(
         vibration: 1.5,
         temperature: 25,
         pressure: 30,
@@ -247,25 +249,26 @@ void main() {
         load: 75,
         failure: false,
         anomaly: false,
-        timestamp: null,
+        timestamp: originalTimestamp,
       );
 
       // Act
       final copied = original.copyWith(
         vibration: null,
         temperature: null,
-        timestamp: timestamp,
+        timestamp: newTimestamp,
       );
 
       // Assert
       expect(copied.vibration, isNull);
       expect(copied.temperature, isNull);
-      expect(copied.timestamp, equals(timestamp));
+      expect(copied.timestamp, equals(newTimestamp));
     });
 
     test('should handle boolean values correctly', () {
       // Arrange
-      const withFailure = RealTimeParameters(
+      final timestamp = DateTime.now();
+      final withFailure = RealTimeParameters(
         vibration: 1.5,
         temperature: 25,
         pressure: 30,
@@ -277,12 +280,13 @@ void main() {
         load: 75,
         failure: true,
         anomaly: true,
-        timestamp: null,
+        timestamp: timestamp,
       );
 
       // Assert
       expect(withFailure.failure, isTrue);
       expect(withFailure.anomaly, isTrue);
+      expect(withFailure.timestamp, equals(timestamp));
     });
 
     test('should handle numeric string values in JSON', () {

@@ -27,9 +27,11 @@ void main() {
       final routes = shellRoute.routes;
 
       // Act
-      final homeRoute = routes.firstWhere(
-        (route) => route.path == '/',
-      );
+      final homeRoute =
+          routes.firstWhere(
+                (route) => (route as GoRoute).path == '/',
+              )
+              as GoRoute;
 
       // Assert
       expect(homeRoute, isA<GoRoute>());
@@ -42,9 +44,11 @@ void main() {
       final routes = shellRoute.routes;
 
       // Act
-      final devicesRoute = routes.firstWhere(
-        (route) => route.path == '/devices',
-      );
+      final devicesRoute =
+          routes.firstWhere(
+                (route) => (route as GoRoute).path == '/devices',
+              )
+              as GoRoute;
 
       // Assert
       expect(devicesRoute, isA<GoRoute>());
@@ -57,9 +61,11 @@ void main() {
       final routes = shellRoute.routes;
 
       // Act
-      final deviceRoute = routes.firstWhere(
-        (route) => route.path == '/device/:id',
-      );
+      final deviceRoute =
+          routes.firstWhere(
+                (route) => (route as GoRoute).path == '/device/:id',
+              )
+              as GoRoute;
 
       // Assert
       expect(deviceRoute, isA<GoRoute>());
@@ -72,9 +78,11 @@ void main() {
       final routes = shellRoute.routes;
 
       // Act
-      final settingsRoute = routes.firstWhere(
-        (route) => route.path == '/settings',
-      );
+      final settingsRoute =
+          routes.firstWhere(
+                (route) => (route as GoRoute).path == '/settings',
+              )
+              as GoRoute;
 
       // Assert
       expect(settingsRoute, isA<GoRoute>());
@@ -89,7 +97,7 @@ void main() {
       // Assert
       expect(routes.length, equals(4));
       expect(
-        routes.map((r) => r.path).toList(),
+        routes.map((r) => (r as GoRoute).path).toList(),
         containsAll([
           '/',
           '/devices',

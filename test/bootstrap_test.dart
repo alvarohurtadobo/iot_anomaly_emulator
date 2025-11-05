@@ -5,14 +5,10 @@ import 'package:iot_anomaly_emulator/bootstrap.dart';
 void main() {
   group('bootstrap', () {
     test('should complete without throwing', () async {
-      // Arrange
-      Widget? capturedWidget;
-
       // Act & Assert
       await expectLater(
         bootstrap(() async {
-          capturedWidget = const MaterialApp(home: Text('Test'));
-          return capturedWidget!;
+          return const MaterialApp(home: Text('Test'));
         }),
         completes,
       );
@@ -20,7 +16,6 @@ void main() {
 
     test('should wrap widget in ProviderScope', () async {
       // Arrange
-      Widget? capturedWidget;
       const testWidget = MaterialApp(home: Text('Test'));
 
       // Act
@@ -50,7 +45,7 @@ void main() {
       // Act & Assert
       await expectLater(
         bootstrap(() async {
-          await Future.delayed(const Duration(milliseconds: 10));
+          await Future<void>.delayed(const Duration(milliseconds: 10));
           return testWidget;
         }),
         completes,
