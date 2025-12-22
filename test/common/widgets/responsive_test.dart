@@ -100,12 +100,14 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        const MaterialApp(
-          home: MediaQuery(
-            data: MediaQueryData(size: Size(800, 600)),
-            child: Responsive(
-              desktop: desktopWidget,
-              mobile: mobileWidget,
+        const ProviderScope(
+          child: MaterialApp(
+            home: MediaQuery(
+              data: MediaQueryData(size: Size(800, 600)),
+              child: Responsive(
+                desktop: desktopWidget,
+                mobile: mobileWidget,
+              ),
             ),
           ),
         ),
@@ -123,12 +125,14 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        const MaterialApp(
-          home: MediaQuery(
-            data: MediaQueryData(size: Size(400, 800)),
-            child: Responsive(
-              desktop: desktopWidget,
-              tablet: tabletWidget,
+        const ProviderScope(
+          child: MaterialApp(
+            home: MediaQuery(
+              data: MediaQueryData(size: Size(400, 800)),
+              child: Responsive(
+                desktop: desktopWidget,
+                tablet: tabletWidget,
+              ),
             ),
           ),
         ),
@@ -147,11 +151,13 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        const MaterialApp(
-          home: MediaQuery(
-            data: MediaQueryData(size: Size(400, 800)),
-            child: Responsive(
-              desktop: desktopWidget,
+        const ProviderScope(
+          child: MaterialApp(
+            home: MediaQuery(
+              data: MediaQueryData(size: Size(400, 800)),
+              child: Responsive(
+                desktop: desktopWidget,
+              ),
             ),
           ),
         ),
