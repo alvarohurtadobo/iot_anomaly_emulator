@@ -14,13 +14,15 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        const MaterialApp(
-          home: MediaQuery(
-            data: MediaQueryData(size: Size(1200, 800)),
-            child: Responsive(
-              desktop: desktopWidget,
-              tablet: tabletWidget,
-              mobile: mobileWidget,
+        ProviderScope(
+          child: const MaterialApp(
+            home: MediaQuery(
+              data: MediaQueryData(size: Size(1200, 800)),
+              child: Responsive(
+                desktop: desktopWidget,
+                tablet: tabletWidget,
+                mobile: mobileWidget,
+              ),
             ),
           ),
         ),
