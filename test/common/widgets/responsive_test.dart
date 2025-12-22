@@ -45,13 +45,15 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        const MaterialApp(
-          home: MediaQuery(
-            data: MediaQueryData(size: Size(800, 600)),
-            child: Responsive(
-              desktop: desktopWidget,
-              tablet: tabletWidget,
-              mobile: mobileWidget,
+        const ProviderScope(
+          child: MaterialApp(
+            home: MediaQuery(
+              data: MediaQueryData(size: Size(800, 600)),
+              child: Responsive(
+                desktop: desktopWidget,
+                tablet: tabletWidget,
+                mobile: mobileWidget,
+              ),
             ),
           ),
         ),
@@ -71,13 +73,15 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        const MaterialApp(
-          home: MediaQuery(
-            data: MediaQueryData(size: Size(500, 800)),
-            child: Responsive(
-              desktop: desktopWidget,
-              tablet: tabletWidget,
-              mobile: mobileWidget,
+        const ProviderScope(
+          child: MaterialApp(
+            home: MediaQuery(
+              data: MediaQueryData(size: Size(500, 800)),
+              child: Responsive(
+                desktop: desktopWidget,
+                tablet: tabletWidget,
+                mobile: mobileWidget,
+              ),
             ),
           ),
         ),
