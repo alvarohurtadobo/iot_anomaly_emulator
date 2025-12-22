@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iot_anomaly_emulator/common/widgets/responsive.dart';
 
@@ -14,8 +15,8 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        ProviderScope(
-          child: const MaterialApp(
+        const ProviderScope(
+          child: MaterialApp(
             home: MediaQuery(
               data: MediaQueryData(size: Size(1200, 800)),
               child: Responsive(
