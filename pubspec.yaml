@@ -22,9 +22,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
+  test: 
   very_good_analysis: ^10.0.0
 
-  test: any
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
